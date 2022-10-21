@@ -1,32 +1,37 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <app-layout>
+      <router-view />
+    </app-layout>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { useApps } from "@/composables/useApps";
+import Vue from "vue";
+import { saysimpleApps } from "@/saysimpleApps";
+import { provideToast } from "vue-toastification/composition";
+import { useAppSettings } from "@/composables/useAppSettings";
+import AppLayout from "@/layouts/AppLayout";
+import { useAppData } from "@/composables/useAppData";
 
-#nav {
-  padding: 30px;
-}
+export default Vue.extend({
+  components: {
+    AppLayout,
+  },
+  setup() {
+    const { loadApps, init: initApps } = useApps();
+    const { loadSettings, init: initSettings } = useAppSettings();
+    const { init: initAppData } = useAppData();
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+    provideToast({});
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+    initAppData();
+    initApps();
+    initSettings();
+
+    loadApps(saysimpleApps);
+    loadSettings(saysimpleApps);
+  },
+});
+</script>

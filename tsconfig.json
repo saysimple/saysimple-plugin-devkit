@@ -7,6 +7,8 @@
     "importHelpers": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "downlevelIteration": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
@@ -34,6 +36,7 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/apps/**/node_modules"
   ]
 }
