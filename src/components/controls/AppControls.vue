@@ -6,6 +6,7 @@
       description="A contact is someone"
       variant="primary"
       :items="contacts"
+      :dataRequiredPresent="isRequiredAppDataPresent(['contact', 'metadata'])"
       v-model="selectedContact"
     />
 
@@ -15,6 +16,7 @@
       description="The agent is the person currently logged in"
       variant="primary"
       :items="users"
+      :dataRequiredPresent="isRequiredAppDataPresent(['agent'])"
       v-model="selectedLoggedInUser"
     />
 
@@ -26,6 +28,7 @@
           conversations assigned to other agents"
       variant="primary"
       :items="users"
+      :dataRequiredPresent="isRequiredAppDataPresent(['assignedAgent'])"
       v-model="selectedAssignedUser"
     />
 
@@ -35,6 +38,9 @@
       description="A chat contains data of the currently opened conversation"
       variant="success"
       :items="chats"
+      :dataRequiredPresent="
+        isRequiredAppDataPresent(['conversation', 'messages', 'tags'])
+      "
       v-model="selectedChat"
     />
 
@@ -142,6 +148,29 @@ export default Vue.extend({
       },
     });
 
+    const isRequiredAppDataPresent = (
+      moduleDataRequired: string[]
+    ): { disabled: boolean; warnings: string[] } => {
+      if (!currentApp.value) {
+        return {
+          disabled: true,
+          warnings: [],
+        };
+      }
+
+      const warnings = moduleDataRequired.filter(
+        (appDataRequired) =>
+          !currentApp.value?.package.saysimple.dataRequired.includes(
+            appDataRequired
+          )
+      );
+
+      return {
+        disabled: warnings.length === moduleDataRequired.length,
+        warnings: warnings,
+      };
+    };
+
     return {
       users,
       chats,
@@ -153,6 +182,7 @@ export default Vue.extend({
       selectedContact,
       currentAppData,
       country,
+      isRequiredAppDataPresent,
     };
   },
 });

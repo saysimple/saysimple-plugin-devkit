@@ -118,6 +118,12 @@ export const useAppData = () => {
 
     if (currentApp.value?.package.saysimple.dataRequired.includes("contact")) {
       appData.contact = contact.value;
+
+      if (
+        !currentApp.value.package.saysimple.dataRequired.includes("metadata")
+      ) {
+        appData.contact.metadata = undefined;
+      }
     }
 
     if (currentApp.value?.package.saysimple.dataRequired.includes("agent")) {
