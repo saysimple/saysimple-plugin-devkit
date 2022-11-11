@@ -20,8 +20,18 @@ import {
 } from "@fortawesome/vue-fontawesome";
 
 import Vue from "vue";
+import { saysimpleApps } from "@/saysimpleApps";
+import * as _ from "lodash";
 
-/* add icons to the library */
+const appIcons = _.map(saysimpleApps, (app) => {
+  if (!app.faIcons) {
+    return [];
+  }
+  return app.faIcons;
+}).flat();
+
+console.log(appIcons);
+
 library.add(
   faUser,
   faUserTie,
@@ -31,7 +41,8 @@ library.add(
   faUserGear,
   faMemoCircleInfo,
   faTrash,
-  faGear
+  faGear,
+  ...appIcons
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

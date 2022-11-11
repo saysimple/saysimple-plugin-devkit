@@ -120,7 +120,9 @@ export const useAppData = () => {
       appData.contact = contact.value;
 
       if (
-        !currentApp.value.package.saysimple.dataRequired.includes("metadata")
+        !currentApp.value.package.saysimple.dataRequired.includes(
+          "contact_metadata"
+        )
       ) {
         appData.contact.metadata = undefined;
       }

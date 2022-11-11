@@ -39,7 +39,8 @@ export const useApUtils = (
   const apiCall = <T = unknown>(
     axiosRequestConfig: AxiosRequestConfig
   ): Promise<T> => {
-    return axios<T>(axiosRequestConfig)
+    return axios
+      .post<T>("http://localhost:3001/proxy", axiosRequestConfig)
       .then((result) => result.data)
       .catch((error: AxiosError) => {
         throw error.response?.data || error;
@@ -73,20 +74,26 @@ export const useApUtils = (
   const getData = async <T = unknown>(
     name: string,
     defaultValue: T | null = null
-  ): Promise<T | null> => {
-    return app as any;
+  ): Promise<any> => {
+    const localData = localStorage.getItem(`${appName}_data:${name}`);
+
+    if (!localData) {
+      return defaultValue;
+    }
+
+    return JSON.parse(localData);
   };
 
   // Plugin Data is only returned on request, which is directly opposite from Plugin Settings.
   // eslint-disable-next-line
   const saveData = async (name: string, value: any): Promise<void> => {
-    alert("Should save data");
+    localStorage.setItem(`${appName}_data:${name}`, JSON.stringify(value));
   };
 
   // eslint-disable-next-line
   // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const saveSettings = async (settings: Record<string, any>): void => {
+  const saveSettings = async (settings: Record<string, any>): Promise<void> => {
     updateSettings(appName, settings);
   };
 

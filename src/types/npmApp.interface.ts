@@ -1,4 +1,5 @@
 import { VueConstructor } from "vue";
+import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
 
 export interface NpmAppInterface {
   components: {
@@ -17,4 +18,5 @@ export interface NpmAppInterface {
       name: string;
     };
   };
+  faIcons?: IconDefinition[];
 }

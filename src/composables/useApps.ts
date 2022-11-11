@@ -27,6 +27,14 @@ export const useApps = () => {
       loadApp(app, newApps[app]);
     }
 
+    const selectedApp = localStorage.getItem("selectedApp");
+
+    if (selectedApp) {
+      setCurrentApp(selectedApp);
+
+      return;
+    }
+
     const [firstApp] = apps.keys();
 
     setCurrentApp(firstApp);
@@ -60,6 +68,8 @@ export const useApps = () => {
   };
 
   const setCurrentApp = (app: string) => {
+    localStorage.setItem("selectedApp", app);
+
     selectedApp.value = app;
   };
 

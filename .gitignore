@@ -1,7 +1,23 @@
 .DS_Store
 node_modules
-/dist
+dist
 
+# Ignore all custom data exept examples
+src/data
+
+!src/data/chats/empty.json
+!src/data/chats/index.ts
+!src/data/chats/random.json
+!src/data/chats/siple-question.json
+
+!src/data/contacts/bob.json
+!src/data/contacts/index.ts
+!src/data/contacts/random.json
+
+!src/data/users/ben.json
+!src/data/users/mike.json
+!src/data/users/index.ts
+!src/data/users/random.json
 
 # local env files
 .env.local
