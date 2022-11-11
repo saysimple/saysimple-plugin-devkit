@@ -2,22 +2,13 @@
 node_modules
 dist
 
-# Ignore all custom data exept examples
-src/data
+# Ignore all data some examples are force added
+src/data/
 
-!src/data/chats/empty.json
-!src/data/chats/index.ts
-!src/data/chats/random.json
-!src/data/chats/siple-question.json
-
-!src/data/contacts/bob.json
-!src/data/contacts/index.ts
-!src/data/contacts/random.json
-
-!src/data/users/ben.json
-!src/data/users/mike.json
-!src/data/users/index.ts
-!src/data/users/random.json
+# First instance of package.json and saysimple apps is force added
+# This is to make sure no extra plugins are commited
+src/saysimpleApps.ts
+package.json
 
 # local env files
 .env.local
