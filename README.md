@@ -53,17 +53,17 @@ A tool for viewing and editing saysimple apps. In this readme you will find how 
 A Saysimple app is a [VueJs component](https://vuejs.org/) that is loaded inside the saysimple platform for users. If you want to create an app you need the following
 
 * An idea on how to create a basic vue app
-* A Saysimple enviroment
+* A Saysimple environment
 * The [devkit](#installation-and-use-of-the-devkit) up and running
 ## Create an app
 
-First pull the skelleton or the example app
+First pull the skeleton or the example app
 ```
 git clone <TODO:repo name>
 ```
 
 ### Package.json
-Than change the following parts of the `package.json`
+Then change the following parts of the `package.json`
 
 #### name
 Change name to your plugin name
@@ -116,7 +116,7 @@ The array can exist out of the following data types
   The tags that are assigned to the current
 
 ### Icon
-The icon file is located inside the `assets` folder and is named icon.png, if your icon has another exention or you need the name you can edit the icon location inside the `icon.js` file
+The icon file is located inside the `assets` folder and is named icon.png, if your icon has another extension, or you need the name you can edit the icon location inside the `icon.js` file
 ```
 import iconFile from "../assets/icon.png" <--- change this to your icon location
 
@@ -126,17 +126,17 @@ export const icon = iconFile
 ## Components
 Every app needs at least 2 components `settings` and `content` The settings component will be rendered when a user clicks on app settings, the content will be rendered if the end user selects your app when in an active conversation.
 
-Both the settings and the content recieve 2 props app and appData you can interact with the Saysimple platform.
+Both the settings and the content receive 2 props app and appData you can interact with the Saysimple platform.
 
 ### AppData
-The appData is a prop delivered to your app settings and content componets it contains information about the current instance of the Saysimple platform.
+The appData is a prop delivered to your app settings and content components it contains information about the current instance of the Saysimple platform.
 
 You have to request AppData in the `dataRequired` array inside the `package.json` otherwise the data won't be delivered.
 
 These are the possible attributes of the appData:
 
 #### contact
-The contact exists out of the following attribures
+The contact exists out of the following attributes
 ```typescript
 {
   id: number;
@@ -167,7 +167,7 @@ If you have `content_metadata` enabled in `dataRequired` you also get access to 
 }]
 ```
 #### agent
-The agent exists out of the following attribures
+The agent exists out of the following attributes
 ```typescript
 {
   id: number;
@@ -180,7 +180,7 @@ The agent exists out of the following attribures
 The assigned agent looks exactly the same as the normal agent
 
 #### conversation
-The conversation exists out of the following attribures
+The conversation exists out of the following attributes
 
 ```typescript
 {
@@ -189,7 +189,7 @@ The conversation exists out of the following attribures
 }
 ```
 #### messages
-The messages is an array that exists out of the following attribures
+The messages is an array that exists out of the following attributes
 
 ```typescript
 [{
@@ -204,7 +204,7 @@ The messages is an array that exists out of the following attribures
 The tags is a string array
 
 ### App
-The app is a prop delivered to your app settings and content componets it contains information about your app and utilities to interact with the Saysimple platform.
+The app is a prop delivered to your app settings and content components it contains information about your app and utilities to interact with the Saysimple platform.
 
 the app object always looks like this:
 ```typescript
@@ -226,7 +226,7 @@ the app object always looks like this:
 }
 ```
 
-the `id`, `enabled` and `components` are mainly for the saysimple to render your app properly so you probably don't have to care about them.
+the `id`, `enabled` and `components` are mainly for the saysimple to render your app properly, so you probably don't have to care about them.
 
 The `name` is the same as the name in `package.json`
 
@@ -234,9 +234,9 @@ The package also contains data from the `package.json`
 
 The `settings` are the settings of the app.
 
-`utils` are usefull functions to interact with app or make api calls. You can read more about them in the next chapter
+`utils` are useful functions to interact with app or make api calls. You can read more about them in the next chapter
 ## Utilities
-Saysimple gives you a few utility functions. They are avalable in the `utils` attribute inside the `app` prop. The utils contain the following functions
+Saysimple gives you a few utility functions. They are available in the `utils` attribute inside the `app` prop. The utils contain the following functions
 
 ### setEmitAndToast
 TODO: find out what this does
@@ -261,7 +261,7 @@ utils.appendToMessage("message to append")
 ```
 
 ### i18n
-This is an [Vue i18n](https://kazupon.github.io/vue-i18n/) plugin you can use inside a composable. You can read more about translation in the next chapter.
+This is a [Vue i18n](https://kazupon.github.io/vue-i18n/) plugin you can use inside a composable. You can read more about translation in the next chapter.
 
 ### notify
 This function calls a [vue toastification](https://github.com/Maronato/vue-toastification/tree/main) element, styled the same way as a saysimple notification would.
@@ -269,7 +269,7 @@ This function calls a [vue toastification](https://github.com/Maronato/vue-toast
 __input__
 
 * The first attribute is a `string` that will be the title
-* The second attribute is an optional `string` that can be `"success"`, `"error"`, `"warning"` or `"info"`. This is the type of the notigication. If nothing is given it will fall back to `"success"`
+* The second attribute is an optional `string` that can be `"success"`, `"error"`, `"warning"` or `"info"`. This is the type of the notification. If nothing is given it will fall back to `"success"`
 
 __output__
 
@@ -281,12 +281,12 @@ __usage__
 utils.notify("Oh no something went wrong", "error")
 ```
 ### apiCall
-This function will make an http request with [axios](https://axios-http.com/docs/intro) via the Saysimple backend as a proxy. Please use this function instead of your own request to avoid CORS issues.
+This function will make a http request with [axios](https://axios-http.com/docs/intro) via the Saysimple backend as a proxy. Please use this function instead of your own request to avoid CORS issues.
 
 __input__
 
 * the same as called if you just run `axios()` like [this](https://axios-http.com/docs/api_intro)
-* You can also suply a return type if youre using typescript
+* You can also supply a return type if you're using typescript
 
 __output__
 
@@ -316,7 +316,7 @@ utils.apiCall<DataInterface>({
 }
 */
 ```
-_This is just an example and wont work if you try it_
+_This is just an example and won't work if you try it_
 
 ### insightsApiCall
 TODO: find out how this works
@@ -332,7 +332,7 @@ __input__
 
 __output__
 
-The function returns the setting if it exist otherwise it will fall back to the default value
+The function returns the setting if it exists otherwise it will fall back to the default value
 
 __usage__
 
@@ -423,7 +423,7 @@ utils.getData<UserProfile>("unkown", {success: false}) // {success: false}
 ```
 
 ### scrollToTop
-This funtion scrolls to the top of the conversation.
+This function scrolls to the top of the conversation.
 
 __input__
 
@@ -447,10 +447,10 @@ Saysimple uses `i18n` and the [vue-i18n](https://kazupon.github.io/vue-i18n/) pl
 
 And we made it available for you to translate your app to these 3 languages and your app will be shown to the user in the language they've selected.
 
-We highly recomend you supply translations in all languages, but Enligh is the only one who is absolutly mandetory and also the fallback if one of the other languages is not supplied.
+We highly recommend you supply translations in all languages, but English is the only one who is absolutely mandatory and also the fallback if one of the other languages is not supplied.
 
 ### Creating translations
-To create translations you have to go to the `locales.js` this will be an object with the language codes in the root and they possess translation objects for example
+To create translations you have to go to the `locales.js` this will be an object with the language codes in the root, and they possess translation objects for example
 
 ```javascript
 export const locales = {
@@ -520,7 +520,7 @@ But in our platform you have to add it with a prefix `@app/<your-plugin-name>` s
 _Don't forget to change `example` to your app name_
 
 #### Inside the composition api
-There is is also a way to get translations inside the composition api. We suply an [vue i18n class](https://kazupon.github.io/vue-i18n/api/#vuei18n-class) with all your translations inside the `app.utils.i18n` so you it would work something like this:
+There is also a way to get translations inside the composition api. We supply a [vue i18n class](https://kazupon.github.io/vue-i18n/api/#vuei18n-class) with all your translations inside the `app.utils.i18n` so it would work something like this:
 
 
 ```javascript
@@ -554,9 +554,9 @@ export const faIcons = [
 ]
 
 ```
-You can add your icons in this array and Saysimplewill install them for you.
+You can add your icons in this array and Saysimple will install them for you.
 
-You can add icons of any of these packages
+You can add icons of these packages
 * fontawesome-pro
 * free-brands-svg-icons
 * pro-duotone-svg-icons
@@ -564,7 +564,7 @@ You can add icons of any of these packages
 * pro-regular-svg-icons
 * pro-solid-svg-icons
 
-_Please register __all__ icons you use, even if your certain this icon is already imported there might be changes in the platform and than your plugin might be lost_
+_Please register __all__ icons you use, even if your certain this icon is already imported there might be changes in the platform and then your plugin might be lost_
 
 ## Assets
 If you're using assets you will have to place them inside the `assets` folder than you can make a reference like this
@@ -574,7 +574,7 @@ If you're using assets you will have to place them inside the `assets` folder th
 </div>
 ```
 
-If you need assets progrematicly you can use something like this:
+If you need assets programmatically you can use something like this:
 ```javascript
 import image1 from "../assets/image1.jpg"
 import image2 from "../assets/image2.jpg"
@@ -603,11 +603,11 @@ To install an app you need to run
 npm i <app>
 ```
 
-If the app isn't in the npm registry yet you need to place the path of the app instead of the appName
+If the app isn't in the npm registry, yet you need to place the path of the app instead of the appName
 
 ### Register the app
 
-Than you have to register your plugin inside `src/saysimpleApps.ts`. Import your app and add it to the exported `saysimpleApps` object inside the file.
+Then you have to register your plugin inside `src/saysimpleApps.ts`. Import your app and add it to the exported `saysimpleApps` object inside the file.
 
 ```typescript
 import <yourAppName> from "<yourAppNpmName>";
@@ -629,7 +629,7 @@ After that you have to start the watcher
 npm run watch
 ```
 
-Then you have create a symlink to develop in realtime. To do that you have to go to the directory of __your app__ and run
+Then you have created a symlink to develop in realtime. To do that you have to go to the directory of __your app__ and run
 ```bash
 npm link
 ```
@@ -637,4 +637,4 @@ After you've done that you need to go to the directory of __the saysimple devkit
 ```bash
 npm link <npmName of app>
 ```
-Finaly restart the saysimple devkit and you should be able to develop in realtime, this works for both packages who are installed locally and from npm.
+Finally restart the saysimple devkit and you should be able to develop in realtime. This works for both packages who are installed locally and from npm.
