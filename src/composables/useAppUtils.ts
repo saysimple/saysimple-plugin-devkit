@@ -5,7 +5,6 @@ import { useToast } from "vue-toastification/composition";
 import ToastInterface from "vue-toastification/dist/types/src";
 import { useAppSettings } from "@/composables/useAppSettings";
 import { i18n as i18nPlugin } from "@/plugins/i18n";
-import VueI18n from "vue-i18n";
 
 export const useApUtils = (
   appName: string,
@@ -25,9 +24,7 @@ export const useApUtils = (
     alert("Append to message: " + message);
   };
 
-  const i18n = (): VueI18n => {
-    return i18nPlugin;
-  };
+  const i18n = i18nPlugin;
 
   const notify = (
     title: string,

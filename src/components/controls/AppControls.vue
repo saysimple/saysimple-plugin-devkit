@@ -6,7 +6,7 @@
       description="A contact is someone"
       variant="primary"
       :items="contacts"
-      :dataRequiredPresent="isRequiredAppDataPresent(['contact', 'metadata'])"
+      :dataRequiredPresent="isRequiredAppDataPresent(['contact', 'contact_metadata'])"
       v-model="selectedContact"
     />
 

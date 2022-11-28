@@ -3,7 +3,7 @@ import ToastInterface from "vue-toastification/dist/types/src";
 import VueI18n from "vue-i18n";
 
 export interface AppUtilsInterface {
-  i18n: () => VueI18n;
+  i18n: VueI18n;
   setEmitAndToast: (
     emit: (event: string, ...args: unknown[]) => void,
     toast: ReturnType<typeof ToastInterface>
