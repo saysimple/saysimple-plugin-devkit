@@ -21,7 +21,7 @@ export const useApUtils = (
   ): void => {};
 
   const appendToMessage = (message: string): void => {
-    alert("Append to message: " + message);
+    alert(`Append to message: ${message}`);
   };
 
   const i18n = i18nPlugin;
@@ -52,9 +52,19 @@ export const useApUtils = (
   const sendEmail = async <T = unknown>({
     email,
   }: {
-    email: unknown;
+    email: string;
   }): Promise<T> => {
-    alert("Send email to: " + email);
+    const toEmailAddress = getSetting<string>("toEmailAddress", "");
+
+    if (!toEmailAddress) {
+      alert(
+        `You are trying to send an email without the 'toEmailAddress' in your settings, this will fail`
+      );
+
+      throw new Error("No email address set");
+    }
+
+    alert(`Send email to: ${toEmailAddress}\n\nWith content: \n${email}`);
 
     return {} as T;
   };
@@ -65,9 +75,6 @@ export const useApUtils = (
     return settings.value[path] ?? defaultValue;
   };
 
-  // eslint-disable-next-line
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const getData = async <T = unknown>(
     name: string,
     defaultValue: T | null = null
@@ -82,21 +89,17 @@ export const useApUtils = (
   };
 
   // Plugin Data is only returned on request, which is directly opposite from Plugin Settings.
-  // eslint-disable-next-line
   const saveData = async (name: string, value: any): Promise<void> => {
     localStorage.setItem(`${appName}_data:${name}`, JSON.stringify(value));
   };
 
-  // eslint-disable-next-line
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const saveSettings = async (settings: Record<string, any>): Promise<void> => {
     updateSettings(appName, settings);
   };
 
-  // Scroll container to top
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const scrollToTop = (): void => {};
+  const scrollToTop = (): void => {
+    alert("Scroll to top")
+  };
 
   return {
     i18n,

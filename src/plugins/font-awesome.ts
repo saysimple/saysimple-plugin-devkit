@@ -30,8 +30,6 @@ const appIcons = _.map(saysimpleApps, (app) => {
   return app.faIcons;
 }).flat();
 
-console.log(appIcons);
-
 library.add(
   faUser,
   faUserTie,

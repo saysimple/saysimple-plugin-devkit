@@ -14,7 +14,6 @@ chats.forEach((chat) => {
   if (chat.messages && Array.isArray(chat.messages)) {
     chat.messages.forEach((message) => {
       message.time = new Date(message.time);
-      console.log(message.time);
     });
   }
 });

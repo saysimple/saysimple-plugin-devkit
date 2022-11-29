@@ -71,7 +71,6 @@ export default Vue.extend({
     );
 
     const dismissWarning = (warning: string) => {
-      console.log("Dismiss: ", warning);
       localStorage.setItem(`warning-${props.title}-${warning}`, "true");
     };
 

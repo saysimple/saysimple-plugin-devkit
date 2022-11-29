@@ -3,7 +3,7 @@
     <control-appdata
       title="Contact"
       :icon="['fas', 'user']"
-      description="A contact is someone"
+      description="A contact is a person contacting a company through a channel supported by saysimple (such as WhatsApp)"
       variant="primary"
       :items="contacts"
       :dataRequiredPresent="isRequiredAppDataPresent(['contact', 'contact_metadata'])"
