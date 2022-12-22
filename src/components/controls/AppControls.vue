@@ -1,26 +1,26 @@
 <template>
   <b-row class="align-items-stretch">
-    <control-appdata
+    <control-app-data
       title="Contact"
       :icon="['fas', 'user']"
       description="A contact is a person contacting a company through a channel supported by saysimple (such as WhatsApp)"
       variant="primary"
       :items="contacts"
       :dataRequiredPresent="isRequiredAppDataPresent(['contact', 'contact_metadata'])"
-      v-model="selectedContact"
+      v-model="contactString"
     />
 
-    <control-appdata
+    <control-app-data
       title="Agent"
       :icon="['fas', 'user-tie']"
       description="The agent is the person currently logged in"
       variant="primary"
       :items="users"
       :dataRequiredPresent="isRequiredAppDataPresent(['agent'])"
-      v-model="selectedLoggedInUser"
+      v-model="loggedInUserString"
     />
 
-    <control-appdata
+    <control-app-data
       title="Assigned agent"
       :icon="['fas', 'user-headset']"
       description="This is the agent assigned to the conversation. This is not
@@ -29,10 +29,10 @@
       variant="primary"
       :items="users"
       :dataRequiredPresent="isRequiredAppDataPresent(['assignedAgent'])"
-      v-model="selectedAssignedUser"
+      v-model="assignedUserString"
     />
 
-    <control-appdata
+    <control-app-data
       title="Chat"
       :icon="['fas', 'comment']"
       description="A chat contains data of the currently opened conversation"
@@ -41,7 +41,7 @@
       :dataRequiredPresent="
         isRequiredAppDataPresent(['conversation', 'messages', 'tags'])
       "
-      v-model="selectedChat"
+      v-model="chatString"
     />
 
     <control-item
@@ -63,6 +63,15 @@
     </control-item>
 
     <control-item
+      title="Storage"
+      :icon="['fas', 'database']"
+      description="Storage can be used to store data for the plugin just like settings. However where all settings are fetched before rendering the plugin, storage needs to be manually fetched."
+      variant="warning"
+    >
+      <pre class="json-preview">{{ storage.value }}</pre>
+    </control-item>
+
+    <control-item
       title="App data"
       :icon="['fas', 'user-gear']"
       description="The data that is given to the app"
@@ -75,20 +84,21 @@
 
 <script lang="ts">
 import { BRow } from "bootstrap-vue";
-import ControlAppdata from "@/components/controls/ControlAppdata.vue";
+import ControlAppData from "@/components/controls/ControlAppData.vue";
 import ControlItem from "@/components/controls/ControlItem.vue";
 import { useAppData } from "@/composables/useAppData";
 import { computed } from "@vue/composition-api";
 import { i18n } from "@/plugins/i18n";
 import Vue from "vue";
 import { useApps } from "@/composables/useApps";
+import { useAppStorage } from "@/composables/useAppStorage";
 
 export default Vue.extend({
   name: "AppControls",
   components: {
     ControlItem,
-    ControlAppdata,
-    BRow,
+    ControlAppData,
+    BRow
   },
   setup() {
     const {
@@ -99,37 +109,11 @@ export default Vue.extend({
       chatString,
       contactString,
       contacts,
-      chats,
+      chats
     } = useAppData();
+    const { getStorage } = useAppStorage();
 
     const { currentApp } = useApps();
-
-    const selectedChat = computed<string>({
-      get() {
-        return chatString.value;
-      },
-      set(value) {
-        chatString.value = value;
-      },
-    });
-
-    const selectedLoggedInUser = computed<string>({
-      get() {
-        return loggedInUserString.value;
-      },
-      set(value) {
-        loggedInUserString.value = value;
-      },
-    });
-
-    const selectedAssignedUser = computed<string>({
-      get() {
-        return assignedUserString.value;
-      },
-      set(value) {
-        assignedUserString.value = value;
-      },
-    });
 
     const country = computed(() => {
       if (i18n.locale === "en") {
@@ -139,13 +123,8 @@ export default Vue.extend({
       return i18n.locale;
     });
 
-    const selectedContact = computed<string>({
-      get() {
-        return contactString.value;
-      },
-      set(value) {
-        contactString.value = value;
-      },
+    const storage = computed(() => {
+      return getStorage(currentApp.value?.name || "");
     });
 
     const isRequiredAppDataPresent = (
@@ -176,15 +155,16 @@ export default Vue.extend({
       chats,
       contacts,
       currentApp,
-      selectedLoggedInUser,
-      selectedAssignedUser,
-      selectedChat,
-      selectedContact,
+      contactString,
+      assignedUserString,
+      loggedInUserString,
+      chatString,
+      storage,
       currentAppData,
       country,
-      isRequiredAppDataPresent,
+      isRequiredAppDataPresent
     };
-  },
+  }
 });
 </script>
 

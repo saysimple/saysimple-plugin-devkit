@@ -11,6 +11,7 @@ import {
   faMemoCircleInfo,
   faTrash,
   faGear,
+  faDatabase,
 } from "@fortawesome/pro-solid-svg-icons";
 
 import {
@@ -40,6 +41,7 @@ library.add(
   faMemoCircleInfo,
   faTrash,
   faGear,
+  faDatabase,
   ...appIcons
 );
 

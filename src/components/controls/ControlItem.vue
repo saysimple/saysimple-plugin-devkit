@@ -21,6 +21,7 @@
     </b-card>
 
     <b-popover
+      v-if="disabled"
       triggers="hover"
       placement="bottom"
       :target="`disabled-wrapper-${_uid}`"

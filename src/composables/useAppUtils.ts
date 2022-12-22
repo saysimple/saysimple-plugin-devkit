@@ -4,6 +4,7 @@ import { NpmAppInterface } from "@/types/npmApp.interface";
 import { useToast } from "vue-toastification/composition";
 import ToastInterface from "vue-toastification/dist/types/src";
 import { useAppSettings } from "@/composables/useAppSettings";
+import { useAppStorage } from "@/composables/useAppStorage";
 import { i18n as i18nPlugin } from "@/plugins/i18n";
 
 export const useApUtils = (
@@ -13,6 +14,7 @@ export const useApUtils = (
   const toast = useToast();
 
   const { getSettings, updateSettings } = useAppSettings();
+  const { getStorageItem, updateStorageItem } = useAppStorage();
 
   const setEmitAndToast = (
     emit: (event: string, ...args: unknown[]) => void,
@@ -75,22 +77,33 @@ export const useApUtils = (
     return settings.value[path] ?? defaultValue;
   };
 
-  const getData = async <T = unknown>(
+  const getStorage = async <T = unknown>(
     name: string,
     defaultValue: T | null = null
-  ): Promise<any> => {
-    const localData = localStorage.getItem(`${appName}_data:${name}`);
+  ): Promise<T | null> => {
+    return getStorageItem<T>(appName, name) ?? defaultValue;
+  };
 
-    if (!localData) {
-      return defaultValue;
-    }
-
-    return JSON.parse(localData);
+  const getData = <T = unknown>(
+    name: string,
+    defaultValue: T | null = null
+  ): Promise<T | null> => {
+    console.warn(
+      "Method getData is deprecated please use 'getStorage' instead"
+    );
+    return getStorage(name, defaultValue);
   };
 
   // Plugin Data is only returned on request, which is directly opposite from Plugin Settings.
-  const saveData = async (name: string, value: any): Promise<void> => {
-    localStorage.setItem(`${appName}_data:${name}`, JSON.stringify(value));
+  const saveStorage = async (name: string, value: any): Promise<void> => {
+    return updateStorageItem(appName, name, value)
+  };
+
+  const saveData = (name: string, value: any): Promise<void> => {
+    console.warn(
+      "Method getData is deprecated please use 'saveStorage' instead"
+    );
+    return saveStorage(name, value);
   };
 
   const saveSettings = async (settings: Record<string, any>): Promise<void> => {
@@ -98,7 +111,7 @@ export const useApUtils = (
   };
 
   const scrollToTop = (): void => {
-    alert("Scroll to top")
+    alert("Scroll to top");
   };
 
   return {

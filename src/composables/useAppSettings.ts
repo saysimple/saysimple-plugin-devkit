@@ -43,15 +43,7 @@ export const useAppSettings = () => {
   const getSettings = (app: string): Ref<Record<string, any>> => {
     const setting = settings.get(app);
 
-    if (setting) {
-      return setting;
-    }
-
-    const newSetting = ref({});
-
-    settings.set(app, newSetting);
-
-    return newSetting;
+    return setting ?? ref({});
   };
 
   return {
