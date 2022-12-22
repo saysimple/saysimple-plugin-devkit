@@ -7,63 +7,63 @@ tutorial on how to create and develop Saysimple apps
 ## Table of contents
 
 <!-- TOC -->
-
 * [Saysimple plugins devkit](#saysimple-plugins-devkit)
-    * [Table of contents](#table-of-contents)
+  * [Table of contents](#table-of-contents)
 * [Creation and development of an App](#creation-and-development-of-an-app)
-    * [Create an app](#create-an-app)
-        * [Package.json](#packagejson)
-            * [name](#name)
-            * [main & module](#main--module)
-            * [Saysimple](#saysimple)
-        * [Icon](#icon)
-    * [Components](#components)
-        * [AppData](#appdata)
-            * [contact](#contact)
-            * [agent](#agent)
-            * [assignedAgent](#assignedagent)
-            * [conversation](#conversation)
-            * [messages](#messages)
-            * [tags](#tags)
-        * [App](#app)
-    * [Utilities](#utilities)
-        * [setEmitAndToast](#setemitandtoast)
-        * [appendToMessage](#appendtomessage)
-        * [i18n](#i18n)
-        * [notify](#notify)
-        * [apiCall](#apicall)
-        * [insightsApiCall](#insightsapicall)
-        * [getSetting](#getsetting)
-        * [saveSettings](#savesettings)
-        * [Send email](#send-email)
-        * [saveData](#savedata)
-        * [getData](#getdata)
-        * [scrollToTop](#scrolltotop)
-    * [Translations](#translations)
-        * [Creating translations](#creating-translations)
-        * [Using translations inside component](#using-translations-inside-component)
-            * [Inside the composition api](#inside-the-composition-api)
-    * [Icons](#icons)
-    * [Assets](#assets)
+  * [Create an app](#create-an-app)
+    * [Package.json](#packagejson)
+      * [name](#name)
+      * [main & module](#main--module)
+      * [Saysimple](#saysimple)
+    * [Icon](#icon)
+  * [Components](#components)
+    * [AppData](#appdata)
+      * [contact](#contact)
+      * [agent](#agent)
+      * [assignedAgent](#assignedagent)
+      * [conversation](#conversation)
+      * [messages](#messages)
+      * [tags](#tags)
+    * [App](#app)
+  * [Utilities](#utilities)
+    * [appendToMessage](#appendtomessage)
+    * [i18n](#i18n)
+    * [notify](#notify)
+    * [apiCall](#apicall)
+    * [insightsApiCall](#insightsapicall)
+    * [getSetting](#getsetting)
+    * [saveSettings](#savesettings)
+    * [Send email](#send-email)
+    * [getData](#getdata)
+    * [saveData](#savedata)
+    * [saveStorage](#savestorage)
+    * [getStorage](#getstorage)
+    * [scrollToTop](#scrolltotop)
+    * [setEmitAndToast](#setemitandtoast)
+  * [Translations](#translations)
+    * [Creating translations](#creating-translations)
+    * [Using translations inside component](#using-translations-inside-component)
+      * [Inside the composition api](#inside-the-composition-api)
+  * [Icons](#icons)
+  * [Assets](#assets)
 * [Installation and the devkit and Apps](#installation-and-the-devkit-and-apps)
-    * [Installation](#installation)
-    * [Install an app](#install-an-app)
-        * [Register the app](#register-the-app)
-    * [Developing the app in realtime](#developing-the-app-in-realtime)
+  * [Installation](#installation)
+  * [Install an app](#install-an-app)
+    * [Register the app](#register-the-app)
+  * [Developing the app in realtime](#developing-the-app-in-realtime)
 * [Usage of the devkit](#usage-of-the-devkit)
-    * [Devkit layout](#devkit-layout)
-        * [Navbar](#navbar)
-        * [Settings page](#settings-page)
-        * [Viewer page](#viewer-page)
-    * [Controls](#controls)
-        * [Manipulating appData](#manipulating-appdata)
-            * [Creating your own presets](#creating-your-own-presets)
-                * [Randomization](#randomization)
-        * [Viewing data](#viewing-data)
-            * [App info](#app-info)
-            * [Settings](#settings)
-            * [Appdata](#appdata)
-
+  * [Devkit layout](#devkit-layout)
+    * [Navbar](#navbar)
+    * [Settings page](#settings-page)
+    * [Viewer page](#viewer-page)
+  * [Controls](#controls)
+    * [Manipulating appData](#manipulating-appdata)
+      * [Creating your own presets](#creating-your-own-presets)
+        * [Randomization](#randomization)
+    * [Viewing data](#viewing-data)
+      * [App info](#app-info)
+      * [Settings](#settings)
+      * [Appdata](#appdata-1)
 <!-- TOC -->
 
 # Creation and development of an App
@@ -476,7 +476,13 @@ utils.sendEmail(
 )
 ```
 
+### getData
+This is deprecated please use [getData](#getData) instead
+
 ### saveData
+This is deprecated please use [saveStorage](#saveStorage) instead
+
+### saveStorage
 
 A way to save additional data that aren't settings.
 
@@ -501,7 +507,7 @@ utils.saveData(
 )
 ```
 
-### getData
+### getStorage
 
 A way to retreive additional data that was saved before.
 
