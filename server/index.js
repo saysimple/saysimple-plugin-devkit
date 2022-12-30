@@ -21,7 +21,7 @@ app.post("/proxy", (req, res) => {
     })
     .catch((error) => {
       res.status((error.response && error.response.status) || 500).send(
-        error.response || {
+        (error.response && error.response.data) || {
           status: 500,
           statusText: "Internal server error",
           data: error,
