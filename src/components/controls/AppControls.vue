@@ -6,7 +6,9 @@
       description="A contact is a person contacting a company through a channel supported by saysimple (such as WhatsApp)"
       variant="primary"
       :items="contacts"
-      :dataRequiredPresent="isRequiredAppDataPresent(['contact', 'contact_metadata'])"
+      :dataRequiredPresent="
+        isRequiredAppDataPresent(['contact', 'contact_metadata'])
+      "
       v-model="contactString"
     />
 
@@ -47,7 +49,7 @@
     <control-app-data
       title="Channels"
       :icon="['fas', 'comment']"
-      description="A chat contains data of the currently opened conversation"
+      description="This is a list of all the channels the user has access to"
       variant="success"
       :items="channels"
       :dataRequiredPresent="
@@ -71,7 +73,6 @@
       description="The settings object that is supplied to the current app"
       variant="warning"
     >
-
       <json-viewer :value="currentApp.settings" />
     </control-item>
 
@@ -112,7 +113,7 @@ export default Vue.extend({
   components: {
     ControlItem,
     ControlAppData,
-    BRow
+    BRow,
   },
   setup() {
     const {
@@ -182,7 +183,7 @@ export default Vue.extend({
       country,
       isRequiredAppDataPresent,
     };
-  }
+  },
 });
 </script>
 

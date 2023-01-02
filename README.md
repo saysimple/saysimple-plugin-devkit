@@ -7,78 +7,131 @@ tutorial on how to create and develop Saysimple apps
 ## Table of contents
 
 <!-- TOC -->
+
 * [Saysimple plugins devkit](#saysimple-plugins-devkit)
-  * [Table of contents](#table-of-contents)
-* [Creation and development of an App](#creation-and-development-of-an-app)
-  * [Create an app](#create-an-app)
-    * [Package.json](#packagejson)
-      * [name](#name)
-      * [main & module](#main--module)
-      * [Saysimple](#saysimple)
-    * [Icon](#icon)
-  * [Components](#components)
-    * [AppData](#appdata)
-      * [contact](#contact)
-      * [agent](#agent)
-      * [assignedAgent](#assignedagent)
-      * [conversation](#conversation)
-      * [messages](#messages)
-      * [tags](#tags)
-    * [App](#app)
-  * [Utilities](#utilities)
-    * [appendToMessage](#appendtomessage)
-    * [i18n](#i18n)
-    * [notify](#notify)
-    * [apiCall](#apicall)
-    * [insightsApiCall](#insightsapicall)
-    * [getSetting](#getsetting)
-    * [saveSettings](#savesettings)
-    * [Send email](#send-email)
-    * [getData](#getdata)
-    * [saveData](#savedata)
-    * [saveStorage](#savestorage)
-    * [getStorage](#getstorage)
-    * [scrollToTop](#scrolltotop)
-    * [setEmitAndToast](#setemitandtoast)
-  * [Translations](#translations)
-    * [Creating translations](#creating-translations)
-    * [Using translations inside component](#using-translations-inside-component)
-      * [Inside the composition api](#inside-the-composition-api)
-  * [Icons](#icons)
-  * [Assets](#assets)
-* [Installation and the devkit and Apps](#installation-and-the-devkit-and-apps)
-  * [Installation](#installation)
-  * [Install an app](#install-an-app)
-    * [Register the app](#register-the-app)
-  * [Developing the app in realtime](#developing-the-app-in-realtime)
+    * [Table of contents](#table-of-contents)
+* [Installation of the devKit](#installation-of-the-devkit)
+    * [Requirements](#requirements)
+    * [Installation](#installation)
+* [Creation of an app](#creation-of-an-app)
+    * [Create an app](#create-an-app)
+        * [Package.json](#packagejson)
+            * [name](#name)
+            * [main & module](#main--module)
+            * [Saysimple](#saysimple)
+        * [Icon](#icon)
+* [Installing the app in the devKit](#installing-the-app-in-the-devkit)
+    * [Installation of the app](#installation-of-the-app)
+    * [Registration of the app](#registration-of-the-app)
+    * [Realtime development of an app](#realtime-development-of-an-app)
+* [Understanding and developing the app](#understanding-and-developing-the-app)
+    * [Components](#components)
+        * [AppData](#appdata)
+            * [contact](#contact)
+            * [agent](#agent)
+            * [assignedAgent](#assignedagent)
+            * [conversation](#conversation)
+            * [messages](#messages)
+            * [tags](#tags)
+        * [App](#app)
+    * [Utilities](#utilities)
+        * [appendToMessage](#appendtomessage)
+        * [i18n](#i18n)
+        * [notify](#notify)
+        * [apiCall](#apicall)
+        * [insightsApiCall](#insightsapicall)
+        * [getSetting](#getsetting)
+        * [saveSettings](#savesettings)
+        * [Send email](#send-email)
+        * [getData](#getdata)
+        * [saveData](#savedata)
+        * [saveStorage](#savestorage)
+        * [getStorage](#getstorage)
+        * [scrollToTop](#scrolltotop)
+        * [setEmitAndToast](#setemitandtoast)
+    * [Translations](#translations)
+        * [Creating translations](#creating-translations)
+        * [Using translations inside component](#using-translations-inside-component)
+            * [Inside the composition api](#inside-the-composition-api)
+    * [Icons](#icons)
+    * [Assets](#assets)
 * [Usage of the devkit](#usage-of-the-devkit)
-  * [Devkit layout](#devkit-layout)
-    * [Navbar](#navbar)
-    * [Settings page](#settings-page)
-    * [Viewer page](#viewer-page)
-  * [Controls](#controls)
-    * [Manipulating appData](#manipulating-appdata)
-      * [Creating your own presets](#creating-your-own-presets)
-        * [Randomization](#randomization)
-    * [Viewing data](#viewing-data)
-      * [App info](#app-info)
-      * [Settings](#settings)
-      * [Appdata](#appdata-1)
+    * [Devkit layout](#devkit-layout)
+        * [Navbar](#navbar)
+        * [Settings page](#settings-page)
+        * [Viewer page](#viewer-page)
+    * [Controls](#controls)
+        * [Manipulating appData](#manipulating-appdata)
+            * [Creating your own presets](#creating-your-own-presets)
+                * [Randomization](#randomization)
+        * [Viewing data](#viewing-data)
+            * [App info](#app-info)
+            * [Settings](#settings)
+            * [Appdata](#appdata-1)
+
 <!-- TOC -->
 
-# Creation and development of an App
+# Installation of the devKit
 
-A Saysimple app is a [VueJs component](https://vuejs.org/) that is loaded inside the saysimple platform for users.
-If
-you want to create an app you need the following
+To make an app you need the devkit installed and know how to install apps on it.
+This way you can see and test your apps
+before there installed in the Saysimple platform.
 
-* An idea on how to create a basic vue app
-* A Saysimple environment
-* The [devkit](#installation) up and running
+## Requirements
+
+* [NodeJs](https://nodejs.org/en/download/releases/) with a version between `12` and `16`, `12` is recommended \
+  _we recommend [nvm](https://github.com/nvm-sh/nvm) if you're running a newer version and need to switch easily between
+  versions_
+* Linux or mac is recommended, the devKit is not tested on windows
+
+## Installation
+
+```bash
+git clone <TODO:get official url>
+``` 
+
+After that you need to copy the package.dist.json and src/saysimpleApps.dist.ts to files without the dist
+
+```bash
+cd ./saysimple-plugin-devkit
+cp package.dist.json package.json
+cp saysimpleApps.dist.ts saysimpleApps.ts
+```
+
+And to compleet the installation you need to run a npm install
+
+```bash
+npm i
+```
+
+To start the program you have to run
+
+```bash
+npm start
+```
+
+After that you can access the devkit by going to http://localhost:3000 in a browser
+
+# Creation of an app
+
+A Saysimple app is a [VueJs component](https://vuejs.org/) that is loaded inside the saysimple platform for users to
+use.
 
 ## Create an app
 
-First pull the skeleton or the example app
+To create an app you first need to pull from an existing app. There are 2 packages you can pick from initially. The
+skeleton or example app.
+
+If you want to start developing immediately without extra code you should pull from the skeleton app and if you want to
+see how everything works in action and play around with that you should pull the example app
+
+Install the skeleton app
+
+```
+git clone <TODO:repo name>
+```
+
+Or install the example app
 
 ```
 git clone <TODO:repo name>
@@ -86,7 +139,8 @@ git clone <TODO:repo name>
 
 ### Package.json
 
-Then change the following parts of the `package.json`
+After installation of the existing app you should make the following changes to the `package.json` to fully customize
+the existing app to your own app
 
 #### name
 
@@ -157,6 +211,81 @@ import iconFile from "../assets/icon.png" // <--- change this to your icon locat
 
 export const icon = iconFile
 ```
+
+# Installing the app in the devKit
+
+## Installation
+
+First you need to install your app via npm
+
+```bash
+npm i <app>
+```
+
+You can also install the app from location if your app is not yet in the npm registry
+
+```bash
+npm i ../location/to/app
+```
+
+_Make sure your app is build while installing it this way_
+
+## Registration
+
+After you need to register the app te see it in the devKit you do that by modifying the `src/saysimpleApps.ts` file.
+
+Import your app and add it to the
+exported `saysimpleApps` object inside the file.
+
+```typescript
+import
+
+<yourAppName>from
+"<yourAppNpmName>";
+
+export const saysimpleApps: Record<string, NpmAppInterface> = {
+    < yourAppName >,
+  };
+```
+
+_You can add as many plugins to this list, and you will see them all in a list in the devKit_
+
+## Realtime development
+
+If you have the app installed and want to develop in real time you first need to make sure that the following
+packages __are not__ installed or are listed as peer dependencies
+
+* vue
+* @vue/composition-api
+* vue-i18n
+
+_They are inherited from the saysimple platform and the devkit will break if you try to develop while they are
+installed_
+
+Then you have created a [symlink](https://docs.npmjs.com/cli/v9/commands/npm-link) to develop in realtime.
+To do that you have to go to the directory of __your app__ and run
+
+```bash
+npm link
+```
+
+After you've done that you need to go to the directory of __the saysimple devkit__
+
+```bash
+npm link <npmName of app>
+```
+
+After that you have to start the watcher in the __app__ so it will rebuild after you make changes
+
+```
+npm run watch
+```
+
+Finally restart the saysimple devkit and you should be able to develop in realtime.
+This works for both packages who are
+installed locally and from npm.
+
+# Understanding and developing the app
 
 ## Components
 
@@ -477,9 +606,11 @@ utils.sendEmail(
 ```
 
 ### getData
-This is deprecated please use [getData](#getData) instead
+
+This is deprecated please use [getStorage](#getStorage) instead
 
 ### saveData
+
 This is deprecated please use [saveStorage](#saveStorage) instead
 
 ### saveStorage
@@ -727,103 +858,6 @@ import image3 from "../assets/image3.jpg"
 ```
 
 Assets are converted in base64 so please be aware of the size.
-
-# Installation and the devkit and Apps
-
-To make an app you need the devkit installed and know how to install apps on it.
-This way you can see and test your apps
-before there installed in the Saysimple platform.
-
-## Installation
-
-To install this project you first need to pull it
-
-```bash
-git clone <TODO:get official url>
-``` 
-
-After that you need to copy the package.dist.json and src/saysimpleApps.dist.ts to files without the dist
-
-```bash
-cd ./saysimple-plugin-devkit
-cp package.dist.json package.json
-cp saysimpleApps.dist.ts saysimpleApps.ts
-```
-
-And to compleet the installation you need to run a npm install
-
-```bash
-npm i
-```
-
-To start the program you have to run
-
-```bash
-npm start
-```
-
-After that you can access the devkit by going to http://localhost:3000 in a browser
-
-## Install an app
-
-To install an app you need to run
-
-```bash
-npm i <app>
-```
-
-If the app isn't in the npm registry, yet you need to place the path of the app instead of the appName
-
-### Register the app
-
-Then you have to register your plugin inside `src/saysimpleApps.ts`.
-Import your app and add it to the
-exported `saysimpleApps` object inside the file.
-
-```typescript
-import
-
-<yourAppName>from
-"<yourAppNpmName>";
-
-export const saysimpleApps: Record<string, NpmAppInterface> = {
-    < yourAppName >,
-  };
-```
-
-## Developing the app in realtime
-
-If you have the app installed and want to develop in real time you first need to make sure that the following
-packages __are not__ installed or are listed as peer dependencies
-
-* vue
-* @vue/composition-api
-* vue-i18n
-  _They are inherited from the saysimple platform and the devkit will break if you try to develop while they are
-  installed_
-
-After that you have to start the watcher
-
-```
-npm run watch
-```
-
-Then you have created a symlink to develop in realtime.
-To do that you have to go to the directory of __your app__ and run
-
-```bash
-npm link
-```
-
-After you've done that you need to go to the directory of __the saysimple devkit__
-
-```bash
-npm link <npmName of app>
-```
-
-Finally restart the saysimple devkit and you should be able to develop in realtime.
-This works for both packages who are
-installed locally and from npm.
 
 # Usage of the devkit
 
