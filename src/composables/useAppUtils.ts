@@ -7,8 +7,9 @@ import ToastInterface from "vue-toastification/dist/types/src";
 import { useAppSettings } from "@/composables/useAppSettings";
 import { useAppStorage } from "@/composables/useAppStorage";
 import { i18n as i18nPlugin } from "@/plugins/i18n";
+import { StartChatParamsInterface } from "@/types/startChatParams.interface";
 
-export const useApUtils = (
+export const useAppUtils = (
   appName: string,
   app: NpmAppInterface
 ): AppUtilsInterface => {
@@ -45,6 +46,18 @@ export const useApUtils = (
       .catch((error: AxiosError) => {
         throw error.response?.data || error;
       });
+  };
+
+  const startChat = (startChatParams: StartChatParamsInterface) => {
+    let alertString = `Start chat with following data: \n`;
+
+    for (const param in startChatParams) {
+      alertString += `\n${param}: ${
+        startChatParams[param as keyof StartChatParamsInterface]
+      }`;
+    }
+
+    alert(alertString);
   };
 
   // eslint-disable-next-line
@@ -97,7 +110,7 @@ export const useApUtils = (
 
   // Plugin Data is only returned on request, which is directly opposite from Plugin Settings.
   const saveStorage = async (name: string, value: any): Promise<void> => {
-    return updateStorageItem(appName, name, value)
+    return updateStorageItem(appName, name, value);
   };
 
   const saveData = (name: string, value: any): Promise<void> => {
@@ -127,6 +140,7 @@ export const useApUtils = (
     getData,
     saveData,
     saveSettings,
+    startChat,
     scrollToTop,
   };
 };

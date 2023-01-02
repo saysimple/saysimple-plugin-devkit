@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import ToastInterface from "vue-toastification/dist/types/src";
 import VueI18n from "vue-i18n";
+import { StartChatParamsInterface } from "@/types/startChatParams.interface";
 
 export interface AppUtilsInterface {
   i18n: VueI18n;
@@ -32,4 +33,5 @@ export interface AppUtilsInterface {
 
   // Scroll container to top
   scrollToTop: () => void;
+  startChat: (startChatParams: StartChatParamsInterface) => void;
 }

@@ -2,7 +2,7 @@ import { computed, Ref, ref } from "@vue/composition-api";
 import { NpmAppInterface } from "@/types/npmApp.interface";
 import { i18n } from "@/plugins/i18n";
 import { AppInterface } from "@/types/app.interface";
-import { useApUtils } from "@/composables/useAppUtils";
+import { useAppUtils } from "@/composables/useAppUtils";
 import { useAppSettings } from "@/composables/useAppSettings";
 
 let selectedApp: Ref<string>;
@@ -60,7 +60,7 @@ export const useApps = () => {
         enabled: 1,
         name: app.name,
         package: app.plugin,
-        utils: useApUtils(appName, app),
+        utils: useAppUtils(appName, app),
         components: app.components,
         settings: settings.value,
       };
