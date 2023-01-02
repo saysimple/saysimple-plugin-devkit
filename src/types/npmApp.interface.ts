@@ -5,6 +5,7 @@ export interface NpmAppInterface {
   components: {
     content: VueConstructor;
     settings: VueConstructor;
+    modal?: VueConstructor;
   };
   locales: Record<string, Record<string, string>>;
   name: string;

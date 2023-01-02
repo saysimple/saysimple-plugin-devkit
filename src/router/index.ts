@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import AppViewer from "@/views/AppViewer.vue";
 import AppSettingsViewer from "@/views/AppSettingsViewer.vue";
+import AppModalViewer from "@/views/AppModalViewer.vue";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes: Array<RouteConfig> = [
     path: "/viewer",
     name: "AppViewer",
     component: AppViewer,
+  },
+  {
+    path: "/modal",
+    name: "AppModalViewer",
+    component: AppModalViewer,
   },
 ];
 

@@ -15,6 +15,7 @@ import { useAppSettings } from "@/composables/useAppSettings";
 import AppLayout from "@/layouts/AppLayout";
 import { useAppData } from "@/composables/useAppData";
 import { useAppStorage } from "@/composables/useAppStorage";
+import { useAppModalData } from "@/composables/useAppModalData";
 
 export default Vue.extend({
   components: {
@@ -24,6 +25,7 @@ export default Vue.extend({
     const { loadApps, init: initApps } = useApps();
     const { loadSettings, init: initSettings } = useAppSettings();
     const { loadStorage, init: initStorage } = useAppStorage();
+    const { loadModalData, init: initModalData } = useAppModalData();
     const { init: initAppData } = useAppData();
 
     provideToast({});
@@ -32,10 +34,12 @@ export default Vue.extend({
     initApps();
     initSettings();
     initStorage();
+    initModalData();
 
     loadApps(saysimpleApps);
     loadSettings(saysimpleApps);
     loadStorage(saysimpleApps);
+    loadModalData(saysimpleApps);
   },
 });
 </script>

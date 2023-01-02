@@ -11,6 +11,9 @@
           <b-nav-item to="/viewer" exact exact-active-class="active">
             Viewer
           </b-nav-item>
+          <b-nav-item v-if="currentApp.components.modal" to="/modal" exact exact-active-class="active">
+            Modal
+          </b-nav-item>
         </b-nav>
       </b-card-header>
 
@@ -24,6 +27,7 @@
 <script lang="ts">
 import { BCard, BCardBody, BCardHeader, BNav, BNavItem } from "bootstrap-vue";
 import AppHeader from "@/components/AppHeader.vue";
+import { useApps } from "@/composables/useApps";
 
 export default {
   name: "defaultLayout",
@@ -35,5 +39,12 @@ export default {
     BNav,
     BNavItem,
   },
+  setup() {
+    const { currentApp } = useApps();
+
+    return {
+      currentApp,
+    };
+  }
 };
 </script>

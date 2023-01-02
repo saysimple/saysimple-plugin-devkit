@@ -1,17 +1,21 @@
 import { users } from "@/data/users";
 import { contacts } from "@/data/contacts";
 import { chats } from "@/data/chats";
+import { channels } from "@/data/channels";
 import { computed, ref, Ref } from "@vue/composition-api";
 import { useDataParser } from "@/composables/useDataParser";
 import { UsersInterface } from "@/types/users.interface";
 import { ContactsInterface } from "@/types/contacts.interface";
 import { ChatsInterface } from "@/types/chats.interface";
 import { useApps } from "@/composables/useApps";
+import { ChannelsInterface } from "@/types/channels.interface";
+import * as lodash from "lodash";
 
 let loggedInUserString: Ref<string>;
 let assignedUserString: Ref<string>;
 let contactString: Ref<string>;
 let chatString: Ref<string>;
+let selectedChannelString: Ref<string>;
 let seed: Ref<number>;
 
 export const useAppData = () => {
@@ -22,6 +26,7 @@ export const useAppData = () => {
     const [firstUser] = users.keys();
     const [firstContact] = contacts.keys();
     const [firstChat] = chats.keys();
+    const [firstChannel] = channels.keys();
 
     seed = ref(Math.floor(Math.random() * 10000000));
 
@@ -29,6 +34,7 @@ export const useAppData = () => {
     assignedUserString = ref(firstUser);
     contactString = ref(firstContact);
     chatString = ref(firstChat);
+    selectedChannelString = ref(firstChannel);
   };
 
   const refreshSeed = () => {
@@ -113,11 +119,21 @@ export const useAppData = () => {
     return parseData<UsersInterface>(user, userSeed, { name });
   };
 
+  const selectedChannels = computed<ChannelsInterface[] | undefined>(() => {
+    const channel = channels.get(selectedChannelString.value);
+
+    if (!channel) {
+      return;
+    }
+
+    return channel;
+  });
+
   const currentAppData = computed(() => {
     const appData: any = {};
 
     if (currentApp.value?.package.saysimple.dataRequired.includes("contact")) {
-      appData.contact = contact.value;
+      appData.contact = { ...contact.value };
 
       if (
         !currentApp.value.package.saysimple.dataRequired.includes(
@@ -136,6 +152,20 @@ export const useAppData = () => {
       currentApp.value?.package.saysimple.dataRequired.includes("assignedAgent")
     ) {
       appData.assignedAgent = assignedUser.value;
+    }
+
+    if (currentApp.value?.package.saysimple.dataRequired.includes("channels")) {
+      appData.channels = lodash.cloneDeep(selectedChannels.value);
+
+      if (
+        !currentApp.value.package.saysimple.dataRequired.includes(
+          "channels_auth"
+        )
+      ) {
+        appData.channels.forEach((channel: ChannelsInterface) => {
+          channel.auth = undefined;
+        })
+      }
     }
 
     if (
@@ -160,9 +190,11 @@ export const useAppData = () => {
     chats,
     users,
     contacts,
+    channels,
     currentAppData,
     loggedInUserString,
     assignedUserString,
+    selectedChannelString,
     chatString,
     contactString,
     refreshSeed,

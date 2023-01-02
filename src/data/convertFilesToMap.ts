@@ -13,11 +13,22 @@ function getName(fileName: string): string {
 export const convertFilesToMap = <T = unknown>(
   context: __WebpackModuleApi.RequireContext
 ): Map<string, T> =>
-  context.keys().reduce(
-    (items, key) =>
-      items.set(getName(key), {
+  context.keys().reduce((items, key) => {
+    const name = getName(key);
+    const content = context<T>(key);
+
+    if (!Array.isArray(content)) {
+      return items.set(name, {
         id: id++,
-        ...context(key),
-      }),
-    new Map<string, T>()
-  );
+        ...content,
+      });
+    }
+
+    return items.set(
+      name,
+      content.map((contentItem) => ({
+        id: id++,
+        ...contentItem,
+      })) as any
+    );
+  }, new Map<string, T>());

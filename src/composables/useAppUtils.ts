@@ -1,4 +1,5 @@
 import { AppUtilsInterface } from "@/types/appUtils.interface";
+import * as lodash from "lodash";
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { NpmAppInterface } from "@/types/npmApp.interface";
 import { useToast } from "vue-toastification/composition";
@@ -74,7 +75,7 @@ export const useApUtils = (
   const getSetting = <T = unknown>(path: string, defaultValue: T): T => {
     const settings = getSettings(appName);
 
-    return settings.value[path] ?? defaultValue;
+    return lodash.at(settings.value, [path])[0] ?? defaultValue;
   };
 
   const getStorage = async <T = unknown>(

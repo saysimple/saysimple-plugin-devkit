@@ -20,23 +20,34 @@
       :is="currentApp.components.content"
       :app="currentApp"
       :appData="currentAppData"
+      @open-app-modal="openAppModal"
     />
   </div>
 </template>
 
 <script lang="ts">
 import { useApps } from "@/composables/useApps";
+import { useAppModalData } from "@/composables/useAppModalData";
 import Vue from "vue";
 import { useAppData } from "@/composables/useAppData";
+import router from "@/router";
 
 export default Vue.extend({
   setup() {
-    const { currentApp } = useApps();
+    const { currentApp, selectedApp } = useApps();
     const { currentAppData } = useAppData();
+    const { updateModalData } = useAppModalData();
+
+    const openAppModal = (data: Record<string, unknown>) => {
+      updateModalData(selectedApp.value ?? "", data);
+
+      router.push("/modal");
+    };
 
     return {
       currentApp,
       currentAppData,
+      openAppModal,
     };
   },
 });

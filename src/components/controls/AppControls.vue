@@ -44,13 +44,25 @@
       v-model="chatString"
     />
 
+    <control-app-data
+      title="Channels"
+      :icon="['fas', 'comment']"
+      description="A chat contains data of the currently opened conversation"
+      variant="success"
+      :items="channels"
+      :dataRequiredPresent="
+        isRequiredAppDataPresent(['channels', 'channels_auth'])
+      "
+      v-model="selectedChannelString"
+    />
+
     <control-item
       title="App info"
       :icon="['fas', 'fa-memo-circle-info']"
       description="The data that is given to the app"
       variant="warning"
     >
-      <pre class="json-preview">{{ currentApp.package }}</pre>
+      <json-viewer :value="currentApp.package" />
     </control-item>
 
     <control-item
@@ -59,7 +71,8 @@
       description="The settings object that is supplied to the current app"
       variant="warning"
     >
-      <pre class="json-preview">{{ currentApp.settings }}</pre>
+
+      <json-viewer :value="currentApp.settings" />
     </control-item>
 
     <control-item
@@ -68,7 +81,7 @@
       description="Storage can be used to store data for the plugin just like settings. However where all settings are fetched before rendering the plugin, storage needs to be manually fetched."
       variant="warning"
     >
-      <pre class="json-preview">{{ storage.value }}</pre>
+      <json-viewer :value="storage.value" />
     </control-item>
 
     <control-item
@@ -77,7 +90,7 @@
       description="The data that is given to the app"
       variant="warning"
     >
-      <pre class="json-preview">{{ currentAppData }}</pre>
+      <json-viewer :value="currentAppData" />
     </control-item>
   </b-row>
 </template>
@@ -92,6 +105,7 @@ import { i18n } from "@/plugins/i18n";
 import Vue from "vue";
 import { useApps } from "@/composables/useApps";
 import { useAppStorage } from "@/composables/useAppStorage";
+import { channels } from "@/data/channels";
 
 export default Vue.extend({
   name: "AppControls",
@@ -104,12 +118,14 @@ export default Vue.extend({
     const {
       users,
       currentAppData,
+      selectedChannelString,
       loggedInUserString,
       assignedUserString,
       chatString,
       contactString,
       contacts,
-      chats
+      channels,
+      chats,
     } = useAppData();
     const { getStorage } = useAppStorage();
 
@@ -158,17 +174,19 @@ export default Vue.extend({
       contactString,
       assignedUserString,
       loggedInUserString,
+      selectedChannelString,
       chatString,
+      channels,
       storage,
       currentAppData,
       country,
-      isRequiredAppDataPresent
+      isRequiredAppDataPresent,
     };
   }
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .json-preview {
   max-height: 300px;
   overflow: auto;

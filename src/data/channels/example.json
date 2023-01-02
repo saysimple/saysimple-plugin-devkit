@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Apple business chat",
+    "provider": "SMOOCH",
+    "platform": "BUSINESS_MESSAGES",
+    "identity": "1234567890abcdef12345678",
+    "active": 1
+  },
+  {
+    "name": "BConnect Whatsapp",
+    "provider": "BCONNECT",
+    "platform": "WHATSAPP",
+    "identity": "12345678901234",
+    "active": 1
+  },
+  {
+    "name": "CM WhatsApp",
+    "provider": "CM",
+    "platform": "WHATSAPP",
+    "identity": "+31 23 123 4567",
+    "active": 1
+  },
+  {
+    "name": "Eazy Whatsapp",
+    "provider": "EAZY",
+    "platform": "WHATSAPP",
+    "identity": "+31 23 987 6543",
+    "active": 1
+  },
+  {
+    "name": "Facebook Messenger",
+    "provider": "FACEBOOK",
+    "platform": "MESSENGER",
+    "identity": "123456789012345",
+    "active": 1
+  },
+  {
+    "name": "Messagebird Instagram",
+    "provider": "MESSAGEBIRD",
+    "platform": "INSTAGRAM",
+    "identity": "abcdef12-9876-fecd-0000-123123123123",
+    "active": 1
+  },
+  {
+    "name": "Messagebird WhatsApp",
+    "provider": "MESSAGEBIRD",
+    "platform": "WHATSAPP",
+    "identity": "00000000-0000-0000-0000-000000000000",
+    "active": 1
+  },
+  {
+    "name": "Email Development",
+    "provider": "SAYSIMPLE",
+    "platform": "EMAIL",
+    "identity": "development",
+    "active": 1
+  },
+  {
+    "name": "Email Finance",
+    "provider": "SAYSIMPLE",
+    "platform": "EMAIL",
+    "identity": "finance",
+    "active": 1
+  },
+  {
+    "name": "Smooch Web Messenger",
+    "provider": "SMOOCH",
+    "platform": "WEB",
+    "identity": "111222333444555666777888",
+    "active": 1
+  },
+  {
+    "name": "Smooch Whatsapp",
+    "provider": "SMOOCH",
+    "platform": "WHATSAPP",
+    "identity": "101010101010101010101010",
+    "active": 1
+  },
+  {
+    "name": "Sms channel",
+    "provider": "SAYSIMPLE",
+    "platform": "SMS",
+    "identity": "4411:INFOR:TEST",
+    "active": 1
+  },
+  {
+    "name": "Telegram",
+    "provider": "TELEGRAM",
+    "platform": "TELEGRAM",
+    "identity": "botName",
+    "active": 1
+  },
+  {
+    "name": "Test provider",
+    "provider": "TEST",
+    "platform": "TEST",
+    "identity": "+31 6 00000000",
+    "active": 1
+  },
+  {
+    "name": "Twilio Whatsapp",
+    "provider": "TWILIO",
+    "platform": "WHATSAPP",
+    "identity": "+31 97123123123",
+    "active": 1
+  }
+]

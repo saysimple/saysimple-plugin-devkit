@@ -6,6 +6,8 @@ import "@/plugins/toastification";
 import "@/plugins/compositionApi";
 import "@/plugins/bootstrap";
 import "@/plugins/font-awesome";
+import "@/plugins/json-previewer";
+
 import { i18n } from "@/plugins/i18n";
 
 Vue.config.productionTip = false;

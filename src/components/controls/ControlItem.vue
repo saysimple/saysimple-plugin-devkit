@@ -9,7 +9,7 @@
           {{ title }}
         </b-card-title>
 
-        <b-card-text class="flex-grow">{{ description }}</b-card-text>
+        <b-card-text>{{ description }}</b-card-text>
 
         <slot />
       </div>
