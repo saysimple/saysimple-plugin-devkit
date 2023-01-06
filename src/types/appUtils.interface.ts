@@ -19,7 +19,12 @@ export interface AppUtilsInterface {
 
   apiCall: <T = unknown>(axiosRequestConfig: AxiosRequestConfig) => Promise<T>;
   insightsApiCall: <T = unknown>(url: string) => Promise<T>;
-  sendEmail: <T = unknown>({ email }: { email: string }) => Promise<T>;
+  sendEmail: <T = unknown>(emailProps: {
+    to?: string;
+    replyTo?: string;
+    subject: string;
+    html: string;
+  }) => Promise<T>;
   getSetting: <T = unknown>(path: string, defaultValue: T) => T;
 
   getData: <T = unknown>(

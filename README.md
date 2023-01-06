@@ -7,68 +7,66 @@ tutorial on how to create and develop Saysimple apps
 ## Table of contents
 
 <!-- TOC -->
-
 * [Saysimple plugins devkit](#saysimple-plugins-devkit)
-    * [Table of contents](#table-of-contents)
+  * [Table of contents](#table-of-contents)
 * [Installation of the devKit](#installation-of-the-devkit)
-    * [Requirements](#requirements)
-    * [Installation](#installation)
+  * [Requirements](#requirements)
+  * [Installation](#installation)
 * [Creation of an app](#creation-of-an-app)
-    * [Create an app](#create-an-app)
-        * [Package.json](#packagejson)
-            * [name](#name)
-            * [main & module](#main--module)
-            * [Saysimple](#saysimple)
-        * [Icon](#icon)
+  * [Create an app](#create-an-app)
+    * [Package.json](#packagejson)
+      * [name](#name)
+      * [main & module](#main--module)
+      * [Saysimple](#saysimple)
+    * [Icon](#icon)
 * [Installing the app in the devKit](#installing-the-app-in-the-devkit)
-    * [Installation of the app](#installation-of-the-app)
-    * [Registration of the app](#registration-of-the-app)
-    * [Realtime development of an app](#realtime-development-of-an-app)
+  * [Installation](#installation-1)
+  * [Registration](#registration)
+  * [Realtime development](#realtime-development)
 * [Understanding and developing the app](#understanding-and-developing-the-app)
-    * [Components](#components)
-        * [AppData](#appdata)
-            * [contact](#contact)
-            * [agent](#agent)
-            * [assignedAgent](#assignedagent)
-            * [conversation](#conversation)
-            * [messages](#messages)
-            * [tags](#tags)
-        * [App](#app)
-    * [Utilities](#utilities)
-        * [appendToMessage](#appendtomessage)
-        * [i18n](#i18n)
-        * [notify](#notify)
-        * [apiCall](#apicall)
-        * [insightsApiCall](#insightsapicall)
-        * [getSetting](#getsetting)
-        * [saveSettings](#savesettings)
-        * [Send email](#send-email)
-        * [getData](#getdata)
-        * [saveData](#savedata)
-        * [saveStorage](#savestorage)
-        * [getStorage](#getstorage)
-        * [scrollToTop](#scrolltotop)
-        * [setEmitAndToast](#setemitandtoast)
-    * [Translations](#translations)
-        * [Creating translations](#creating-translations)
-        * [Using translations inside component](#using-translations-inside-component)
-            * [Inside the composition api](#inside-the-composition-api)
-    * [Icons](#icons)
-    * [Assets](#assets)
+  * [Components](#components)
+    * [AppData](#appdata)
+      * [contact](#contact)
+      * [agent](#agent)
+      * [assignedAgent](#assignedagent)
+      * [conversation](#conversation)
+      * [messages](#messages)
+      * [tags](#tags)
+    * [App](#app)
+  * [Utilities](#utilities)
+    * [appendToMessage](#appendtomessage)
+    * [i18n](#i18n)
+    * [notify](#notify)
+    * [apiCall](#apicall)
+    * [insightsApiCall](#insightsapicall)
+    * [getSetting](#getsetting)
+    * [saveSettings](#savesettings)
+    * [Send email](#send-email)
+    * [getData](#getdata)
+    * [saveData](#savedata)
+    * [saveStorage](#savestorage)
+    * [getStorage](#getstorage)
+    * [scrollToTop](#scrolltotop)
+    * [setEmitAndToast](#setemitandtoast)
+  * [Translations](#translations)
+    * [Creating translations](#creating-translations)
+    * [Using translations inside component](#using-translations-inside-component)
+      * [Inside the composition api](#inside-the-composition-api)
+  * [Icons](#icons)
+  * [Assets](#assets)
 * [Usage of the devkit](#usage-of-the-devkit)
-    * [Devkit layout](#devkit-layout)
-        * [Navbar](#navbar)
-        * [Settings page](#settings-page)
-        * [Viewer page](#viewer-page)
-    * [Controls](#controls)
-        * [Manipulating appData](#manipulating-appdata)
-            * [Creating your own presets](#creating-your-own-presets)
-                * [Randomization](#randomization)
-        * [Viewing data](#viewing-data)
-            * [App info](#app-info)
-            * [Settings](#settings)
-            * [Appdata](#appdata-1)
-
+  * [Devkit layout](#devkit-layout)
+    * [Navbar](#navbar)
+    * [Settings page](#settings-page)
+    * [Viewer page](#viewer-page)
+  * [Controls](#controls)
+    * [Manipulating appData](#manipulating-appdata)
+      * [Creating your own presets](#creating-your-own-presets)
+        * [Randomization](#randomization)
+    * [Viewing data](#viewing-data)
+      * [App info](#app-info)
+      * [Settings](#settings)
+      * [Appdata](#appdata-1)
 <!-- TOC -->
 
 # Installation of the devKit
@@ -284,6 +282,8 @@ npm run watch
 Finally restart the saysimple devkit and you should be able to develop in realtime.
 This works for both packages who are
 installed locally and from npm.
+
+_You need to restart the devKit if changes in the package.json are made_
 
 # Understanding and developing the app
 
@@ -775,13 +775,15 @@ something like this:
 <p> {{ $t("location.house") }} </p>
 ``` 
 
-But in our platform you have to add it with a prefix `@app/<your-plugin-name>` so for the example app it would be
+But in our platform you have to add it with a prefix `@app/<your-app-translation-key>`, the plugin translation key is your app name in kebab case, if the app name is `myAwesomeApp` the translation key would be `my-awesome-app`
+
+so for the example app it would be
 
 ```html
 <p> {{ $t("@app/example.location.house") }}</p>
 ```
 
-_Don't forget to change `example` to your app name_
+_Don't forget to change `example` to your app translation key_
 
 #### Inside the composition api
 
@@ -805,7 +807,7 @@ export default {
 }
 ```
 
-_And again don't forget to change example to your app name_
+_And again don't forget to change example to your app translation key_
 
 ## Icons
 

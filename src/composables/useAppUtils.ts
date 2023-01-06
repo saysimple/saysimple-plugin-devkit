@@ -8,6 +8,7 @@ import { useAppSettings } from "@/composables/useAppSettings";
 import { useAppStorage } from "@/composables/useAppStorage";
 import { i18n as i18nPlugin } from "@/plugins/i18n";
 import { StartChatParamsInterface } from "@/types/startChatParams.interface";
+import * as EmailValidator from "email-validator";
 
 export const useAppUtils = (
   appName: string,
@@ -22,7 +23,11 @@ export const useAppUtils = (
     emit: (event: string, ...args: unknown[]) => void,
     toast: ReturnType<typeof ToastInterface>
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-  ): void => {};
+  ): void => {
+    console.error(
+      "Don't use the 'setEmitAndToast' function this might break the emit and toastification functionality of your app in the saysimple platform"
+    );
+  };
 
   const appendToMessage = (message: string): void => {
     alert(`Append to message: ${message}`);
@@ -66,26 +71,45 @@ export const useAppUtils = (
   const insightsApiCall = <T = unknown>(url: string): Promise<T> => {};
 
   const sendEmail = async <T = unknown>({
-    email,
+    to,
+    replyTo,
+    subject,
+    html,
   }: {
-    email: string;
+    to?: string;
+    replyTo?: string;
+    subject: string;
+    html: string;
   }): Promise<T> => {
-    const toEmailAddress = getSetting<string>("toEmailAddress", "");
+    let toEmailAddress: string | undefined = getSetting<string>(
+      "toEmailAddress",
+      to
+    );
+    const toEmailAddressLock = getSetting<number>("toEmailAddressLock");
+
+    if (toEmailAddressLock === 0) {
+      toEmailAddress = to;
+    }
 
     if (!toEmailAddress) {
-      alert(
-        `You are trying to send an email without the 'toEmailAddress' in your settings, this will fail`
-      );
-
       throw new Error("No email address set");
     }
 
-    alert(`Send email to: ${toEmailAddress}\n\nWith content: \n${email}`);
+    if (!EmailValidator.validate(toEmailAddress)) {
+      throw new Error("invalid email");
+    }
+
+    alert(
+      `Send email to: ${toEmailAddress}\nReply to ${replyTo}\nWith subject: ${subject}\n\nWith content: \n${html}`
+    );
 
     return {} as T;
   };
 
-  const getSetting = <T = unknown>(path: string, defaultValue: T): T => {
+  const getSetting = <T = unknown>(
+    path: string,
+    defaultValue?: T | undefined
+  ): T => {
     const settings = getSettings(appName);
 
     return lodash.at(settings.value, [path])[0] ?? defaultValue;
