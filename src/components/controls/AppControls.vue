@@ -3,7 +3,7 @@
     <control-app-data
       title="Contact"
       :icon="['fas', 'user']"
-      description="A contact is a person contacting a company through a channel supported by saysimple (such as WhatsApp)"
+      description="A contact is a person contacting a company through a channel supported by Saysimple (such as WhatsApp)"
       variant="primary"
       :items="contacts"
       :dataRequiredPresent="
@@ -25,9 +25,9 @@
     <control-app-data
       title="Assigned agent"
       :icon="['fas', 'user-headset']"
-      description="This is the agent assigned to the conversation. This is not
+      description="This is the agent assigned to the chat. This is not
           necessarily the logged in agent since you're able to view
-          conversations assigned to other agents"
+          chats assigned to other agents"
       variant="primary"
       :items="users"
       :dataRequiredPresent="isRequiredAppDataPresent(['assignedAgent'])"
@@ -37,7 +37,7 @@
     <control-app-data
       title="Chat"
       :icon="['fas', 'comment']"
-      description="A chat contains data of the currently opened conversation"
+      description="A chat contains data about the correspondence between a contact and the business through Saysimple"
       variant="success"
       :items="chats"
       :dataRequiredPresent="

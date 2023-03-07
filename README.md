@@ -93,7 +93,7 @@ After that you need to copy the package.dist.json and src/saysimpleApps.dist.ts 
 ```bash
 cd ./saysimple-plugin-devkit
 cp package.dist.json package.json
-cp saysimpleApps.dist.ts saysimpleApps.ts
+cp src/saysimpleApps.dist.ts src/saysimpleApps.ts
 ```
 
 And to compleet the installation you need to run a npm install
@@ -226,7 +226,7 @@ You can also install the app from location if your app is not yet in the npm reg
 npm i ../location/to/app
 ```
 
-_Make sure your app is build while installing it this way_
+_Make sure your app is built while installing it this way_
 
 ## Registration
 
@@ -702,7 +702,7 @@ support 3 languages:
 And we made it available for you to translate your app to these 3 languages and your app will be shown to the user in
 the language they've selected.
 
-We highly recommend you supply translations in all languages, but English is the only one who is absolutely mandatory
+We highly recommend you supply translations in all languages, but English is the only one which is absolutely mandatory
 and also the fallback if one of the other languages is not supplied.
 
 ### Creating translations
