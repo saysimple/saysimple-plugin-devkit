@@ -49,7 +49,7 @@
     <control-app-data
       title="Channels"
       :icon="['fas', 'comment']"
-      description="This is a list of all the channels the user has access to"
+      description="Channels is an array of social accounts which have been connected to Saysimple so we can show you the messages that account receives and or sends. Examples are WhatsApp accounts or Twitter accounts"
       variant="success"
       :items="channels"
       :dataRequiredPresent="
@@ -88,7 +88,7 @@
     <control-item
       title="App data"
       :icon="['fas', 'user-gear']"
-      description="The data that is given to the app"
+      description="The data about the Saysimple that is given to the app, see readme for more info"
       variant="warning"
     >
       <json-viewer :value="currentAppData" />
@@ -102,7 +102,6 @@ import ControlAppData from "@/components/controls/ControlAppData.vue";
 import ControlItem from "@/components/controls/ControlItem.vue";
 import { useAppData } from "@/composables/useAppData";
 import { computed } from "@vue/composition-api";
-import { i18n } from "@/plugins/i18n";
 import Vue from "vue";
 import { useApps } from "@/composables/useApps";
 import { useAppStorage } from "@/composables/useAppStorage";
@@ -132,17 +131,7 @@ export default Vue.extend({
 
     const { currentApp } = useApps();
 
-    const country = computed(() => {
-      if (i18n.locale === "en") {
-        return "gb";
-      }
-
-      return i18n.locale;
-    });
-
-    const storage = computed(() => {
-      return getStorage(currentApp.value?.name || "");
-    });
+    const storage = computed(() => getStorage(currentApp.value?.name || ""));
 
     const isRequiredAppDataPresent = (
       moduleDataRequired: string[]
@@ -180,7 +169,6 @@ export default Vue.extend({
       channels,
       storage,
       currentAppData,
-      country,
       isRequiredAppDataPresent,
     };
   },

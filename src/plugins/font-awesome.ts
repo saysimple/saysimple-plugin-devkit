@@ -22,9 +22,9 @@ import {
 
 import Vue from "vue";
 import { saysimpleApps } from "@/saysimpleApps";
-import * as _ from "lodash";
+import * as lodash from "lodash";
 
-const appIcons = _.map(saysimpleApps, (app) => {
+const appIcons = lodash.map(saysimpleApps, (app) => {
   if (!app.faIcons) {
     return [];
   }
