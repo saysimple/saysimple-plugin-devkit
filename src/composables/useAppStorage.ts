@@ -9,7 +9,7 @@ export const useAppStorage = () => {
   };
 
   const loadStorage = (apps: Record<string, NpmAppInterface>): void => {
-    for (const app in apps) {
+    Object.keys(apps).forEach((app) => {
       let storage: Ref<Record<string, any>>;
       try {
         storage = ref(
@@ -20,7 +20,7 @@ export const useAppStorage = () => {
       }
 
       storages.set(app, storage);
-    }
+    });
   };
 
   const updateStorageItem = (app: string, key: string, value: any): void => {

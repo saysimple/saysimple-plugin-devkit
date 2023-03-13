@@ -9,7 +9,7 @@ export const useAppSettings = () => {
   };
 
   const loadSettings = (apps: Record<string, NpmAppInterface>): void => {
-    for (const app in apps) {
+    Object.keys(apps).forEach((app) => {
       let setting: Ref<Record<string, any>>;
       try {
         setting = ref(
@@ -20,7 +20,7 @@ export const useAppSettings = () => {
       }
 
       settings.set(app, setting);
-    }
+    });
   };
 
   const updateSetting = (app: string, key: string, value: any): void => {
