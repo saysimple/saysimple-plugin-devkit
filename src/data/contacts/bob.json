@@ -1,0 +1,27 @@
+{
+  "name": "Bob",
+  "countryCode": "NL",
+  "email": "bob@example.com",
+  "phone": "+31 6 12345678",
+  "street": "1",
+  "houseNumber": "A",
+  "zipCode": "1000AA",
+  "city": "Amsterdam",
+  "province": "North Holland",
+  "country": "Nederland",
+  "reference": "1234",
+  "company": "Saysimple",
+  "jobTitle": "Developer",
+  "isHighPriority": 1,
+  "createdAt": "2022-09-19T13:25:04.000Z",
+  "isBlocked": 0,
+  "metadata": [{
+    "id": 1,
+    "name": "licensePlate",
+    "value": "AA-00-AA"
+  }, {
+    "id": 2,
+    "name": "age",
+    "value": "25"
+  }]
+}

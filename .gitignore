@@ -1,11 +1,21 @@
 .DS_Store
 node_modules
-/dist
+dist
 
+# Ignore all data some examples are force added
+src/data/
+
+# First instance of package.json and saysimple apps included as .dist files
+# This is to make sure no extra plugins are commited
+src/saysimpleApps.ts
+package.json
+package-lock.json
 
 # local env files
 .env.local
 .env.*.local
+
+.npmrc
 
 # Log files
 npm-debug.log*
