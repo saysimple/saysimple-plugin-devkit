@@ -528,7 +528,7 @@ _This is just an example and won't work if you try it_
 
 ### insightsApiCall
 
-This is a function used internally by Saysimple. You should not touch this.
+For Saysimple internal use only
 
 ### getSetting
 
