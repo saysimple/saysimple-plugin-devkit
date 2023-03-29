@@ -1,94 +1,94 @@
 <template>
   <b-row class="align-items-stretch">
     <control-app-data
-      title="Contact"
-      :icon="['fas', 'user']"
-      description="A contact is a person contacting a company through a channel supported by Saysimple (such as WhatsApp)"
-      variant="primary"
-      :items="contacts"
+      v-model="contactString"
       :dataRequiredPresent="
         isRequiredAppDataPresent(['contact', 'contact_metadata'])
       "
-      v-model="contactString"
-    />
-
-    <control-app-data
-      title="Agent"
-      :icon="['fas', 'user-tie']"
-      description="The agent is the person currently logged in"
+      :icon="['fas', 'user']"
+      :items="contacts"
+      description="A contact is a person contacting a company through a channel supported by Saysimple (such as WhatsApp)"
+      title="Contact"
       variant="primary"
-      :items="users"
-      :dataRequiredPresent="isRequiredAppDataPresent(['agent'])"
-      v-model="loggedInUserString"
     />
 
     <control-app-data
-      title="Assigned agent"
+      v-model="loggedInUserString"
+      :dataRequiredPresent="isRequiredAppDataPresent(['agent'])"
+      :icon="['fas', 'user-tie']"
+      :items="users"
+      description="The agent is the person currently logged in"
+      title="Agent"
+      variant="primary"
+    />
+
+    <control-app-data
+      v-model="assignedUserString"
+      :dataRequiredPresent="isRequiredAppDataPresent(['assignedAgent'])"
       :icon="['fas', 'user-headset']"
+      :items="users"
       description="This is the agent assigned to the chat. This is not
           necessarily the logged in agent since you're able to view
           chats assigned to other agents"
+      title="Assigned agent"
       variant="primary"
-      :items="users"
-      :dataRequiredPresent="isRequiredAppDataPresent(['assignedAgent'])"
-      v-model="assignedUserString"
     />
 
     <control-app-data
-      title="Chat"
-      :icon="['fas', 'comment']"
-      description="A chat contains data about the correspondence between a contact and the business through Saysimple"
-      variant="success"
-      :items="chats"
+      v-model="chatString"
       :dataRequiredPresent="
         isRequiredAppDataPresent(['conversation', 'messages', 'tags'])
       "
-      v-model="chatString"
+      :icon="['fas', 'comment']"
+      :items="chats"
+      description="A chat contains data about the correspondence between a contact and the business through Saysimple"
+      title="Chat"
+      variant="success"
     />
 
     <control-app-data
-      title="Channels"
-      :icon="['fas', 'comment']"
-      description="Channels is an array of social accounts which have been connected to Saysimple so we can show you the messages that account receives and or sends. Examples are WhatsApp accounts or Twitter accounts"
-      variant="success"
-      :items="channels"
+      v-model="selectedChannelString"
       :dataRequiredPresent="
         isRequiredAppDataPresent(['channels', 'channels_auth'])
       "
-      v-model="selectedChannelString"
+      :icon="['fas', 'comment']"
+      :items="channels"
+      description="Channels is an array of social accounts which have been connected to Saysimple so we can show you the messages that account receives and or sends. Examples are WhatsApp accounts or Twitter accounts"
+      title="Channels"
+      variant="success"
     />
 
     <control-item
-      title="App info"
-      :icon="['fas', 'fa-memo-circle-info']"
+      :icon="['fas', 'fa-circle-info']"
       description="The data that is given to the app"
+      title="App info"
       variant="warning"
     >
       <json-viewer :value="currentApp.package" />
     </control-item>
 
     <control-item
-      title="Settings"
       :icon="['fas', 'gears']"
       description="The settings object that is supplied to the current app"
+      title="Settings"
       variant="warning"
     >
       <json-viewer :value="currentApp.settings" />
     </control-item>
 
     <control-item
-      title="Storage"
       :icon="['fas', 'database']"
       description="Storage can be used to store data for the plugin just like settings. However where all settings are fetched before rendering the plugin, storage needs to be manually fetched."
+      title="Storage"
       variant="warning"
     >
       <json-viewer :value="storage.value" />
     </control-item>
 
     <control-item
-      title="App data"
       :icon="['fas', 'user-gear']"
       description="The data about the Saysimple that is given to the app, see readme for more info"
+      title="App data"
       variant="warning"
     >
       <json-viewer :value="currentAppData" />
@@ -105,7 +105,6 @@ import { computed } from "@vue/composition-api";
 import Vue from "vue";
 import { useApps } from "@/composables/useApps";
 import { useAppStorage } from "@/composables/useAppStorage";
-import { channels } from "@/data/channels";
 
 export default Vue.extend({
   name: "AppControls",

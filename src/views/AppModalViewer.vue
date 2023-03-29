@@ -30,17 +30,19 @@ export default Vue.extend({
     BRow,
     BCol,
     ControlItem,
-    AppModal
+    AppModal,
   },
   setup() {
     const { selectedApp } = useApps();
     const { getModalData } = useAppModalData();
 
-    const currentModalData = computed(() => getModalData(selectedApp.value ?? "").value);
+    const currentModalData = computed(
+      () => getModalData(selectedApp.value ?? "").value
+    );
 
     return {
-      currentModalData
+      currentModalData,
     };
-  }
+  },
 });
 </script>

@@ -11,7 +11,12 @@
           <b-nav-item to="/viewer" exact exact-active-class="active">
             Viewer
           </b-nav-item>
-          <b-nav-item v-if="currentApp.components.modal" to="/modal" exact exact-active-class="active">
+          <b-nav-item
+            v-if="currentApp.components.modal"
+            to="/modal"
+            exact
+            exact-active-class="active"
+          >
             Modal
           </b-nav-item>
         </b-nav>
@@ -45,6 +50,6 @@ export default {
     return {
       currentApp,
     };
-  }
+  },
 };
 </script>

@@ -1,5 +1,5 @@
 import { VueConstructor } from "vue";
-import { IconDefinition } from "@fortawesome/pro-light-svg-icons";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export interface NpmAppInterface {
   components: {
