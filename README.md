@@ -53,6 +53,7 @@ tutorial on how to create and develop Saysimple apps
     * [Using translations inside component](#using-translations-inside-component)
       * [Inside the composition api](#inside-the-composition-api)
   * [Icons](#icons)
+    * [Use of pro Icons](#use-of-pro-icons)
   * [Assets](#assets)
 * [Usage of the devkit](#usage-of-the-devkit)
   * [Devkit layout](#devkit-layout)
@@ -167,14 +168,14 @@ this
 
 ```json
 {
-  "saysimple": {
-    "name": "App name",
-    "description": "A short description of the app",
-    "dataRequired": [
-      "contact",
-      "agent"
-    ]
-  }
+    "saysimple": {
+        "name": "App name",
+        "description": "A short description of the app",
+        "dataRequired": [
+            "contact",
+            "agent"
+        ]
+    }
 }
 ```
 
@@ -242,8 +243,8 @@ import
 "<yourAppNpmName>";
 
 export const saysimpleApps: Record<string, NpmAppInterface> = {
-    < yourAppName >,
-  };
+                < yourAppName >,
+        };
 ```
 
 _You can add as many plugins to this list, and you will see them all in a list in the devKit_
@@ -309,23 +310,23 @@ The contact exists out of the following attributes
 
 ```typescript
 interface contact {
-  id: number;
-  name: string;
-  countryCode?: string;
-  email?: string;
-  phone?: string;
-  street?: string;
-  houseNumber?: string;
-  zipCode?: string;
-  city?: string;
-  province?: string;
-  country?: string;
-  reference?: string;
-  company?: string;
-  jobTitle?: string;
-  isHighPriority?: number;
-  createdAt?: Date;
-  isBlocked?: number;
+    id: number;
+    name: string;
+    countryCode?: string;
+    email?: string;
+    phone?: string;
+    street?: string;
+    houseNumber?: string;
+    zipCode?: string;
+    city?: string;
+    province?: string;
+    country?: string;
+    reference?: string;
+    company?: string;
+    jobTitle?: string;
+    isHighPriority?: number;
+    createdAt?: Date;
+    isBlocked?: number;
 }
 ```
 
@@ -336,9 +337,9 @@ that looks like this:
 
 ```typescript
 interface metadata {
-  id: number,
-  name: string,
-  value: string
+    id: number,
+    name: string,
+    value: string
 }
 
 []
@@ -352,10 +353,10 @@ The agent exists out of the following attributes
 
 ```typescript
 interface user {
-  id: number;
-  name?: string;
-  displayName?: string;
-  email?: string;
+    id: number;
+    name?: string;
+    displayName?: string;
+    email?: string;
 }
 ```
 
@@ -369,8 +370,8 @@ The conversation exists out of the following attributes
 
 ```typescript
 interface conversation {
-  start: Date;
-  status: "open" | "closed";
+    start: Date;
+    status: "open" | "closed";
 }
 ```
 
@@ -380,10 +381,10 @@ The messages is an __array__ that exists out of the following attributes
 
 ```typescript
 interface message {
-  direction: "in" | "out";
-  time: Date;
-  status: string;
-  message: string;
+    direction: "in" | "out";
+    time: Date;
+    status: string;
+    message: string;
 }
 ```
 
@@ -400,20 +401,20 @@ the app object always looks like this:
 
 ```typescript
 interface app {
-  id: number,
-  enabled: number,
-  name: string,
-  package: {
+    id: number,
+    enabled: number,
     name: string,
-    version: string,
-    saysimple: Saysimle // Same as the saysimple in package.json
-  },
-  utils: Utils  // object with  functions,
-  components: {
-    settings: VueComponent,
-    content: VueComponent,
-  },
-  settings: Record<string, any> // Your app settings,
+    package: {
+        name: string,
+        version: string,
+        saysimple: Saysimle // Same as the saysimple in package.json
+    },
+    utils: Utils  // object with  functions,
+    components: {
+        settings: VueComponent,
+        content: VueComponent,
+    },
+    settings: Record<string, any> // Your app settings,
 }
 ```
 
@@ -503,17 +504,17 @@ __usage__
 
 ```typescript
 utils.apiCall<DataInterface>({
-  url: "https://example.com/api/some-location",
-  method: "POST",
-  headers: {
-    authorizarion: app.settings.apiKey
-  },
-  data: {
-    foo: "bar"
-  },
-  params: {
-    hi: "mom"
-  }
+    url: "https://example.com/api/some-location",
+    method: "POST",
+    headers: {
+        authorizarion: app.settings.apiKey
+    },
+    data: {
+        foo: "bar"
+    },
+    params: {
+        hi: "mom"
+    }
 })
 
 /* Returns
@@ -549,7 +550,7 @@ __usage__
 ```typescript
 // settings
 {
-  existingSetting: 1337
+    existingSetting: 1337
 }
 
 utils.getSetting<number>("existingSetting", 45) // 1337
@@ -574,9 +575,9 @@ __usage__
 
 ```typescript
 utils.saveSettings({
-  existingSetting: 1337,
-  anotherSetting: "cool",
-  words: ["hello", "world"]
+    existingSetting: 1337,
+    anotherSetting: "cool",
+    words: ["hello", "world"]
 })
 ```
 
@@ -597,11 +598,11 @@ __usage__
 
 ```typescript
 utils.saveSettings({
-  toEmailAddress: "info@example.com"
+    toEmailAddress: "info@example.com"
 })
 
 utils.sendEmail(
-  `<b>The content of an email</b>`
+        `<b>The content of an email</b>`
 )
 ```
 
@@ -630,11 +631,11 @@ __usage__
 
 ```typescript
 utils.saveData(
-  `userProfile:${contact.id}`,
-  {
-    externalId: yourApp.id,
-    success: true
-  }
+        `userProfile:${contact.id}`,
+        {
+            externalId: yourApp.id,
+            success: true
+        }
 )
 ```
 
@@ -712,56 +713,56 @@ and they possess translation objects for example
 
 ```javascript
 export const locales = {
-  en: {
-    settings: {
-      active: "Active",
-      save: "Save",
-      "save-success-title": "Settings saved",
-      "save-error-title": "Error saving settings",
-      name: "Name",
-      phone: "Phone number"
+    en: {
+        settings: {
+            active: "Active",
+            save: "Save",
+            "save-success-title": "Settings saved",
+            "save-error-title": "Error saving settings",
+            name: "Name",
+            phone: "Phone number"
+        },
+        location: {
+            house: "House",
+            address: "Address",
+            street: "Street",
+            city: "City"
+        }
     },
-    location: {
-      house: "House",
-      address: "Address",
-      street: "Street",
-      city: "City"
-    }
-  },
-  nl: {
-    settings: {
-      active: "Actief",
-      save: "Opslaan",
-      "save-success-title": "Settings opgeslagen",
-      "save-error-title": "Fout bij opslaan settings",
-      name: "Naam",
-      phone: "Telefoonnummer"
-    },
-    location: {
-      house: "Huis",
-      address: "Adres",
-      street: "Straat",
-      city: "Stad"
-    }
+    nl: {
+        settings: {
+            active: "Actief",
+            save: "Opslaan",
+            "save-success-title": "Settings opgeslagen",
+            "save-error-title": "Fout bij opslaan settings",
+            name: "Naam",
+            phone: "Telefoonnummer"
+        },
+        location: {
+            house: "Huis",
+            address: "Adres",
+            street: "Straat",
+            city: "Stad"
+        }
 
-  },
-  es: {
-    settings: {
-      active: "Activo",
-      save: "Ahorrar",
-      "save-success-title": "Ajustes guardados",
-      "save-error-title": "Error al guardar la configuración",
-      name: "Nombre",
-      phone: "Número de teléfono"
     },
-    location: {
-      house: "Casa",
-      address: "Dirección",
-      street: "Calle",
-      city: "Ciudad"
-    }
+    es: {
+        settings: {
+            active: "Activo",
+            save: "Ahorrar",
+            "save-success-title": "Ajustes guardados",
+            "save-error-title": "Error al guardar la configuración",
+            name: "Nombre",
+            phone: "Número de teléfono"
+        },
+        location: {
+            house: "Casa",
+            address: "Dirección",
+            street: "Calle",
+            city: "Ciudad"
+        }
 
-  },
+    },
 };
 
 ```
@@ -775,7 +776,8 @@ something like this:
 <p> {{ $t("location.house") }} </p>
 ```
 
-But in our platform you have to add it with a prefix `@app/<your-app-translation-key>`, the plugin translation key is your app name in kebab case, if the app name is `myAwesomeApp` the translation key would be `my-awesome-app`
+But in our platform you have to add it with a prefix `@app/<your-app-translation-key>`, the plugin translation key is
+your app name in kebab case, if the app name is `myAwesomeApp` the translation key would be `my-awesome-app`
 
 so for the example app it would be
 
@@ -793,17 +795,17 @@ the `app.utils.i18n` so it would work something like this:
 
 ```javascript
 export default {
-  setup(props) {
-    const $t = props.app.utils.i18n.t;
-    const $notify = props.app.utils.notify;
+    setup(props) {
+        const $t = props.app.utils.i18n.t;
+        const $notify = props.app.utils.notify;
 
-    const onButtonClick = () => {
-      $notify({
-        $t("@app/example.settings.save-success-title"),
-        "success"
-    })
+        const onButtonClick = () => {
+            $notify({
+                $t("@app/example.settings.save-success-title"),
+                    "success"
+        })
+        }
     }
-  }
 }
 ```
 
@@ -818,10 +820,10 @@ You can do that inside the `faIcons.js` files.
 There you'll find that it exports an array with all the icons something like this:
 
 ```javascript
-import { faFaceSmileBeam } from "@fortawesome/pro-solid-svg-icons"
+import { faFaceSmile } from "@fortawesome/free-solid-svg-icons"
 
 export const faIcons = [
-  faFaceSmileBeam
+    faFaceSmile
 ]
 
 ```
@@ -832,6 +834,8 @@ You can add icons of these packages
 
 * fontawesome-pro
 * free-brands-svg-icons
+* free-regular-svg-icons
+* free-solid-svg-icons
 * pro-duotone-svg-icons
 * pro-light-svg-icons
 * pro-regular-svg-icons
@@ -840,6 +844,35 @@ You can add icons of these packages
 _Please register __all__ icons you use, even if your certain this icon is already imported there might be changes in the
 platform and then your plugin might be lost_
 
+### Use of pro Icons
+
+Only the free icons are installed by default this is because you'll need
+a [fontawesome pro license](https://fontawesome.com/plans) to use fontawesome pro. Our Saysimple frontend has such a pro
+license installed so if you'll be able to use pro icons in your plugin if you have a license yourself.
+
+To use pro icons in your plugin you need to configure your access in the **Devkit package** (You don't have to do this in your plugin itself).
+Follow [these steps in fontawesome](https://fontawesome.com/docs/web/setup/packages#_1-configure-access) to configure
+your access.
+
+You can install the icon packages you need inside the devkit after your access is configured
+
+```shell
+npm install pro-solid-svg-icons
+```
+
+After that you can export pro icons in **your plugin** just like the free icons
+
+```javascript
+import { faFaceSmile} from "@fortawesome/free-solid-svg-icons"
+import { faFaceSmileBeam } from "@fortawesome/pro-solid-svg-icons"
+
+export const faIcons = [
+    faFaceSmile,
+    faFaceSmileBeam
+]
+
+```
+
 ## Assets
 
 If you're using assets you will have to place them inside the `assets` folder than you can make a reference like this
@@ -847,7 +880,7 @@ If you're using assets you will have to place them inside the `assets` folder th
 ```html
 
 <div>
-  <img src="../assets/your-image.jpg" />
+    <img src="../assets/your-image.jpg" />
 </div>
 ```
 
