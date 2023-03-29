@@ -25,7 +25,7 @@
     <control-app-data
       v-model="assignedUserString"
       :dataRequiredPresent="isRequiredAppDataPresent(['assignedAgent'])"
-      :icon="['fas', 'user-headset']"
+      :icon="['fas', 'user-tag']"
       :items="users"
       description="This is the agent assigned to the chat. This is not
           necessarily the logged in agent since you're able to view
