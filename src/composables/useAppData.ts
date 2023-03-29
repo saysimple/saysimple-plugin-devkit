@@ -164,7 +164,7 @@ export const useAppData = () => {
       ) {
         appData.channels.forEach((channel: ChannelsInterface) => {
           channel.auth = undefined;
-        })
+        });
       }
     }
 

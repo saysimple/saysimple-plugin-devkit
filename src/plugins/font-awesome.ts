@@ -4,15 +4,15 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faUser,
   faUserTie,
-  faUserHeadset,
+  faUserTag,
   faComment,
   faGears,
   faUserGear,
-  faMemoCircleInfo,
+  faCircleInfo,
   faTrash,
   faGear,
   faDatabase,
-} from "@fortawesome/pro-solid-svg-icons";
+} from "@fortawesome/free-solid-svg-icons";
 
 import {
   FontAwesomeIcon,
@@ -24,21 +24,23 @@ import Vue from "vue";
 import { saysimpleApps } from "@/saysimpleApps";
 import * as lodash from "lodash";
 
-const appIcons = lodash.map(saysimpleApps, (app) => {
-  if (!app.faIcons) {
-    return [];
-  }
-  return app.faIcons;
-}).flat();
+const appIcons = lodash
+  .map(saysimpleApps, (app) => {
+    if (!app.faIcons) {
+      return [];
+    }
+    return app.faIcons;
+  })
+  .flat();
 
 library.add(
   faUser,
   faUserTie,
-  faUserHeadset,
+  faUserTag,
   faComment,
   faGears,
   faUserGear,
-  faMemoCircleInfo,
+  faCircleInfo,
   faTrash,
   faGear,
   faDatabase,

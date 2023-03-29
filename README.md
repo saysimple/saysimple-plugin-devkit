@@ -85,8 +85,8 @@ before there installed in the Saysimple platform.
 ## Installation
 
 ```bash
-git clone <TODO:get official url>
-``` 
+git clone https://github.com/saysimple/saysimple-plugin-devkit.git
+```
 
 After that you need to copy the package.dist.json and src/saysimpleApps.dist.ts to files without the dist
 
@@ -126,13 +126,13 @@ see how everything works in action and play around with that you should pull the
 Install the skeleton app
 
 ```
-git clone <TODO:repo name>
+git clone https://github.com/saysimple/skeleton-plugin.git
 ```
 
 Or install the example app
 
 ```
-git clone <TODO:repo name>
+git clone https://github.com/saysimple/example-plugin.git
 ```
 
 ### Package.json
@@ -406,7 +406,7 @@ interface app {
   package: {
     name: string,
     version: string,
-    saysimple: Saysimle // Same as the saysimple in package.json 
+    saysimple: Saysimle // Same as the saysimple in package.json
   },
   utils: Utils  // object with  functions,
   components: {
@@ -519,7 +519,7 @@ utils.apiCall<DataInterface>({
 /* Returns
 {
     hello: "world",
-    number: 1337   
+    number: 1337
 }
 */
 ```
@@ -528,7 +528,7 @@ _This is just an example and won't work if you try it_
 
 ### insightsApiCall
 
-TODO: find out how this works
+For Saysimple internal use only
 
 ### getSetting
 
@@ -547,7 +547,7 @@ The function returns the setting if it exists otherwise it will fall back to the
 __usage__
 
 ```typescript
-// settings 
+// settings
 {
   existingSetting: 1337
 }
@@ -773,7 +773,7 @@ something like this:
 
 ```html
 <p> {{ $t("location.house") }} </p>
-``` 
+```
 
 But in our platform you have to add it with a prefix `@app/<your-app-translation-key>`, the plugin translation key is your app name in kebab case, if the app name is `myAwesomeApp` the translation key would be `my-awesome-app`
 
