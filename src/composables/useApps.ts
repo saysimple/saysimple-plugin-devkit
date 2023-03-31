@@ -32,7 +32,9 @@ export const useApps = () => {
     if (selectedApp) {
       setCurrentApp(selectedApp);
 
-      return;
+      if (apps.get(selectedApp)?.value) {
+        return;
+      }
     }
 
     const [firstApp] = apps.keys();
