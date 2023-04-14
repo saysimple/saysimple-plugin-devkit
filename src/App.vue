@@ -36,10 +36,10 @@ export default Vue.extend({
     initStorage();
     initModalData();
 
-    loadApps(saysimpleApps);
     loadSettings(saysimpleApps);
     loadStorage(saysimpleApps);
     loadModalData(saysimpleApps);
+    loadApps(saysimpleApps);
   },
 });
 </script>
