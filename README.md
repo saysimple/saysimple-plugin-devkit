@@ -1,6 +1,6 @@
 # Saysimple plugins devkit
 
-A tool for viewing and editing saysimple apps.
+A tool for viewing and editing Saysimple apps.
 In this readme you will find how to install and use the devkit and also a
 tutorial on how to create and develop Saysimple apps
 
@@ -74,14 +74,14 @@ tutorial on how to create and develop Saysimple apps
 
 To make an app you need the devkit installed and know how to install apps on it.
 This way you can see and test your apps
-before there installed in the Saysimple platform.
+before they will be installed in the Saysimple platform.
 
 ## Requirements
 
 * [NodeJs](https://nodejs.org/en/download/releases/) with a version between `12` and `16`, `12` is recommended \
   _we recommend [nvm](https://github.com/nvm-sh/nvm) if you're running a newer version and need to switch easily between
   versions_
-* Linux or mac is recommended, the devKit is not tested on windows
+* Linux or Mac is recommended, the devKit is not tested on Windows
 
 ## Installation
 
@@ -89,7 +89,7 @@ before there installed in the Saysimple platform.
 git clone https://github.com/saysimple/saysimple-plugin-devkit.git
 ```
 
-After that you need to copy the package.dist.json and src/saysimpleApps.dist.ts to files without the dist
+After a Git clone you need to copy the package.dist.json and src/saysimpleApps.dist.ts to files without the dist
 
 ```bash
 cd ./saysimple-plugin-devkit
@@ -97,23 +97,23 @@ cp package.dist.json package.json
 cp src/saysimpleApps.dist.ts src/saysimpleApps.ts
 ```
 
-And to compleet the installation you need to run a npm install
+To complete the installation you need to run a npm install
 
 ```bash
 npm i
 ```
 
-To start the program you have to run
+To start the environment you have to run
 
 ```bash
 npm start
 ```
 
-After that you can access the devkit by going to http://localhost:3000 in a browser
+After you've run the above command you can access the devkit by going to http://localhost:3000 in a browser
 
 # Creation of an app
 
-A Saysimple app is a [VueJs component](https://vuejs.org/) that is loaded inside the saysimple platform for users to
+A Saysimple app is a [VueJs component](https://vuejs.org/) that is loaded inside the Saysimple platform for users to
 use.
 
 ## Create an app
@@ -121,8 +121,8 @@ use.
 To create an app you first need to pull from an existing app. There are 2 packages you can pick from initially. The
 skeleton or example app.
 
-If you want to start developing immediately without extra code you should pull from the skeleton app and if you want to
-see how everything works in action and play around with that you should pull the example app
+If you want to start developing immediately without extra code you can pull from the skeleton app and if you want to
+see how everything works in action and play around with it, you can pull and use the example app
 
 Install the skeleton app
 
@@ -138,12 +138,12 @@ git clone https://github.com/saysimple/example-plugin.git
 
 ### Package.json
 
-After installation of the existing app you should make the following changes to the `package.json` to fully customize
+After the installation of the existing app you can make the following changes to the `package.json` to fully customize
 the existing app to your own app
 
 #### name
 
-Change name to your plugin name
+Change the name of your plugin name
 
 #### main & module
 
@@ -163,7 +163,7 @@ to
 
 #### Saysimple
 
-The saysimple object is data the saysimple platform will use to install and display the plugin, the object looks like
+The saysimple object consist of the data the Saysimple platform will use to install and display the plugin, the object looks like
 this
 
 ```json
@@ -181,9 +181,9 @@ this
 
 The `name` and `description` are shown to the end user to display your app.
 
-Data Required is an array of strings it notifies what kind of data will be sent to your app by the saysimple platform.
+Data Required is an array of strings it notifies what kind of data will be sent to your app by the Saysimple platform.
 
-The array can exist out of the following data types
+The array can exist of the following data types
 
 * __contact__ \
   The user that sent a message to the saysimple.
@@ -231,7 +231,7 @@ _Make sure your app is built while installing it this way_
 
 ## Registration
 
-After you need to register the app te see it in the devKit you do that by modifying the `src/saysimpleApps.ts` file.
+After the installation you need to register the app te see the app in the devKit. This can be done by modifying the `src/saysimpleApps.ts` file.
 
 Import your app and add it to the
 exported `saysimpleApps` object inside the file.
@@ -262,7 +262,7 @@ _They are inherited from the saysimple platform and the devkit will break if you
 installed_
 
 Then you have created a [symlink](https://docs.npmjs.com/cli/v9/commands/npm-link) to develop in realtime.
-To do that you have to go to the directory of __your app__ and run
+To do so you have to go to the directory of __your app__ and run
 
 ```bash
 npm link
@@ -280,7 +280,7 @@ After that you have to start the watcher in the __app__ so it will rebuild after
 npm run watch
 ```
 
-Finally restart the saysimple devkit and you should be able to develop in realtime.
+Finally restart the Saysimple devkit and you should be able to develop in realtime.
 This works for both packages who are
 installed locally and from npm.
 
@@ -418,7 +418,7 @@ interface app {
 }
 ```
 
-the `id`, `enabled` and `components` are mainly for the saysimple to render your app properly, so you probably don't
+the `id`, `enabled` and `components` are mainly for the saysimple platform to render your app properly, so you probably don't
 have to care about them.
 
 The `name` is the same as the name in `package.json`
@@ -427,7 +427,7 @@ The package also contains data from the `package.json`
 
 The `settings` are the settings of the app.
 
-`utils` are useful functions to interact with app or make api calls.
+`utils` are useful functions to interact with an app or make api calls.
 You can read more about them in the next chapter
 
 ## Utilities
@@ -559,7 +559,7 @@ utils.getSetting<number>("notExistingSetting", 45) // 45
 
 ### saveSettings
 
-This is a way to save settings to the saysimple database.
+This is a way to save settings to the Saysimple database.
 You can retreive them again with the `getSetting` util or in
 the `settings` attribute of the app prop.
 
@@ -700,7 +700,7 @@ support 3 languages:
 * Spanish (es)
 * Dutch (nl)
 
-And we made it available for you to translate your app to these 3 languages and your app will be shown to the user in
+We make it possible for you to translate your app to these 3 languages and your app will be shown to the user in
 the language they've selected.
 
 We highly recommend you supply translations in all languages, but English is the only one which is absolutely mandatory
@@ -769,7 +769,7 @@ export const locales = {
 
 ### Using translations inside component
 
-If you want to use your translation it is a bit less straight forward normally if you want to translate with i18n you do
+If you want to use your translation it is a bit less straight forward. Normally if you want to translate with i18n you do
 something like this:
 
 ```html
@@ -842,7 +842,7 @@ You can add icons of these packages
 * pro-solid-svg-icons
 
 _Please register __all__ icons you use, even if your certain this icon is already imported there might be changes in the
-platform and then your plugin might be lost_
+platform and it is possible your plugin can't be used_
 
 ### Use of pro Icons
 
@@ -892,7 +892,7 @@ import image2 from "../assets/image2.jpg"
 import image3 from "../assets/image3.jpg"
 ```
 
-Assets are converted in base64 so please be aware of the size.
+Assets are converted in base64, please be aware of the size.
 
 # Usage of the devkit
 
@@ -925,7 +925,7 @@ the devkit will be untouched
 
 ### Settings page
 
-The settings page will show you how your app will look inside the settings page from saysimple.
+The settings page will show you how your app will look inside the settings page from Saysimple.
 When opened you'll see 2
 component the one on the left is a preview how your app will be displayed the one on the app selection page.
 
