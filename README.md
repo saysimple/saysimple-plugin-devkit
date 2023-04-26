@@ -143,7 +143,7 @@ the existing app to your own app
 
 #### name
 
-Change the name of your plugin name
+Change _example_ in `main` and `module` to your plugin name
 
 #### main & module
 
@@ -841,8 +841,8 @@ You can add icons of these packages
 * pro-regular-svg-icons
 * pro-solid-svg-icons
 
-_Please register __all__ icons you use, even if your certain this icon is already imported there might be changes in the
-platform and it is possible your plugin can't be used_
+_Please register __all__ icons you use, even if your certain the icon is already imported there might be changes in the
+platform and it is possible your icon might be lost_
 
 ### Use of pro Icons
 
